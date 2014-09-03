@@ -198,6 +198,7 @@
 }
 
 .post-title {
+    display: none;
     font-size: 42px;
     letter-spacing: -1px;
     line-height: 1;
@@ -208,22 +209,20 @@
 }
 
 .post-content {
-    margin-bottom: $spacing-unit;
+    margin-top: 4em;
+    margin-bottom: 12em;
 
     h2 {
-        font-size: 32px;
-
-        @include media-query($on-laptop) {
-            font-size: 28px;
-        }
+      font-family: $heading-font-family;
+      text-transform: uppercase;
+      font-size: 1em;
+      margin-bottom: 2em;
     }
 
     h3 {
-        font-size: 26px;
-
-        @include media-query($on-laptop) {
-            font-size: 22px;
-        }
+      font-size: $small-font-size;
+      color: $grey-color;
+      margin-bottom: 1.5em;
     }
 
     h4 {
