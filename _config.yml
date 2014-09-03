@@ -5,3 +5,4 @@ url: "http://lectures.pascallaliberte.me" # the base hostname & protocol for you
 
 # Build settings
 markdown: kramdown
+permalink: /:year-:month-:day/
