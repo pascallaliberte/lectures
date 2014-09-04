@@ -1,9 +1,0 @@
-<!DOCTYPE html>
-<html>
-  {% include head.html %}
-  {% for post in site.posts limit:1 %}
-  <meta http-equiv="refresh" content="0;url={{ post.url | prepend: site.baseurl }}">
-  {% endfor %}
-  <body>
-  </body>
-</html>
