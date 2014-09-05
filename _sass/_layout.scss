@@ -198,14 +198,12 @@
 }
 
 .post-title {
-    display: none;
-    font-size: 42px;
-    letter-spacing: -1px;
+    font-size: $small-font-size;
+    float: right;
+    color: $grey-color;
+    margin: 0;
+    margin-top: 0.5em;
     line-height: 1;
-
-    @include media-query($on-laptop) {
-        font-size: 36px;
-    }
 }
 
 .post-content {
