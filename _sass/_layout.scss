@@ -230,6 +230,16 @@
   display: none;
 }
 
+#post-additional-readings-toggle {
+  font-size: $small-font-size;
+  color: $grey-color;
+  margin-top: -0.3em;
+  a {
+    color: $grey-color;
+    text-decoration: underline;
+  }
+}
+
 .post-content {
     margin-top: 2em;
     margin-bottom: 12em;
