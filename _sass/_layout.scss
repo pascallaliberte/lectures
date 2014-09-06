@@ -183,6 +183,31 @@
     color: $grey-color;
 }
 
+.post-meta .post-date {
+  position: absolute;
+  top: 1em;
+  right: 25px;
+  font-size: $small-font-size;
+  float: right;
+  color: $grey-color;
+  margin: 0;
+  margin-top: 0.5em;
+  line-height: 1;
+  .post-date-day-month-year {
+    margin-left: -0.2em;
+    @include media-query($on-laptop) {
+      display: none;
+    }
+  }
+  &.post-date-upcoming {
+    .post-date-year {
+      display: none;
+    }
+  }
+}
+
+
+
 .post-link {
     display: block;
     font-size: 24px;
@@ -198,12 +223,7 @@
 }
 
 .post-title {
-    font-size: $small-font-size;
-    float: right;
-    color: $grey-color;
-    margin: 0;
-    margin-top: 0.5em;
-    line-height: 1;
+  display: none;
 }
 
 .post-content {

@@ -6,13 +6,7 @@ title: Lectures
 
 {% for post in site.posts limit:1 %}
 
-  <header class="post-header">
-    <h1 class="post-title">{{ post.title }}</h1>
-  </header>
-
-  <article class="post-content">
-    {{ post.content }}
-  </article>
+  {% include post.html %}
 
 {% endfor %}
 
