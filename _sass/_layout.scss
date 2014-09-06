@@ -226,8 +226,12 @@
   display: none;
 }
 
+.post-additional-readings {
+  display: none;
+}
+
 .post-content {
-    margin-top: 4em;
+    margin-top: 2em;
     margin-bottom: 12em;
 
     h2 {
@@ -235,6 +239,7 @@
       text-transform: uppercase;
       font-size: 1em;
       margin-bottom: 2em;
+      margin-top: 3em;
     }
 
     h3 {
