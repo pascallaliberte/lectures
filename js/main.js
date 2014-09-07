@@ -19,7 +19,7 @@ enable_additional_readings = function () {
         $( ".post-content" ).eq(0).prepend('<div class="post-readings post-readings-additional"></div>')
         $( '#post-readings-additional-toggle').remove();
         $( ".post-readings-additional").eq(0).html( data ).slideDown();
-        history.pushState({}, null, '#additionnelles');
+        history.pushState({}, null);
       });
 
     });
