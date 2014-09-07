@@ -269,3 +269,14 @@
         }
     }
 }
+
+@media print {
+  .post-content {
+    margin-bottom: 0;
+    max-width: 80%;
+    font-size: 0.8em;
+  }
+  #post-readings-additional-toggle {
+    display: none;
+  }
+}
