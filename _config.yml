@@ -3,11 +3,6 @@ title: Lectures
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://lectures.pascallaliberte.me" # the base hostname & protocol for your site
 
-# Collections
-collections:
-  additionnelles:
-    output: true
-
 # Build settings
 markdown: kramdown
 permalink: /:year-:month-:day/

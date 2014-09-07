@@ -231,9 +231,11 @@
 }
 
 #post-additional-readings-toggle {
+  position: absolute;
+  top: 1em;
+  margin-top: 0.5em;
   font-size: $small-font-size;
   color: $grey-color;
-  margin-top: -0.3em;
   a {
     color: $grey-color;
     text-decoration: underline;
