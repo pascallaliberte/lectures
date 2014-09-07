@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
   $(window).on("popstate", function(e) {
     enable_additional_readings();
-    $( ".post-additional-readings").eq(0).remove();
+    $( ".post-readings-additional").eq(0).remove();
   });
 
 });
@@ -12,13 +12,13 @@ enable_additional_readings = function () {
   $.get( readings_url, function( data ) {
 
     $('.home .post-header').eq(0).each(function(){
-      $(this).append('<div id="post-additional-readings-toggle"><a id="post-additional-readings-toggle-link" href="' + readings_url + '">Afficher les autres textes</a></div>');
+      $(this).append('<div id="post-readings-additional-toggle"><a id="post-readings-additional-toggle-link" href="' + readings_url + '">Afficher les autres textes</a></div>');
 
-      $('#post-additional-readings-toggle-link').click(function(event) {
+      $('#post-readings-additional-toggle-link').click(function(event) {
         event.preventDefault();
-        $( ".post-content" ).eq(0).prepend('<div class="post-additional-readings"></div>')
-        $( '#post-additional-readings-toggle').remove();
-        $( ".post-additional-readings").eq(0).html( data ).slideDown();
+        $( ".post-content" ).eq(0).prepend('<div class="post-readings post-readings-additional"></div>')
+        $( '#post-readings-additional-toggle').remove();
+        $( ".post-readings-additional").eq(0).html( data ).slideDown();
         history.pushState({}, null, '#additionnelles');
       });
 

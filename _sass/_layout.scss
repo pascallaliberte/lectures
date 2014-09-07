@@ -226,11 +226,15 @@
   display: none;
 }
 
-.post-additional-readings {
+.post-readings {
+  border-top: 1px solid white;
+}
+
+.post-readings-additional {
   display: none;
 }
 
-#post-additional-readings-toggle {
+#post-readings-additional-toggle {
   position: absolute;
   top: 1em;
   margin-top: 0.5em;
