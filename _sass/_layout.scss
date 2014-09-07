@@ -191,11 +191,9 @@
   float: right;
   color: $grey-color;
   margin: 0;
-  margin-top: 0.5em;
-  line-height: 1;
   .post-date-day-month-year {
     margin-left: -0.2em;
-    @include media-query($on-laptop) {
+    @include media-query($on-palm) {
       display: none;
     }
   }
@@ -237,7 +235,6 @@
 #post-readings-additional-toggle {
   position: absolute;
   top: 1em;
-  margin-top: 0.5em;
   font-size: $small-font-size;
   color: $grey-color;
   a {
