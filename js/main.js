@@ -8,7 +8,7 @@ $( document ).ready(function() {
 });
 
 enable_additional_readings = function () {
-  readings_url = "/additionnelles/2014-09-07-dimanche.html";
+  readings_url = "/additionnelles/2014-09-14-dimanche.html";
   $.get( readings_url, function( data ) {
 
     $('.home .post-header').eq(0).each(function(){
