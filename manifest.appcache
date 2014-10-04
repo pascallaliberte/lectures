@@ -7,7 +7,7 @@ CACHE MANIFEST
 CACHE:
 {% for post in site.posts %}{{ post.url }}
 {% endfor %}
-{% for page in site.pages %}{% if page.url != '/manifest.appcache' %}{{ page.url }}{% endif %}
+{% for page in site.pages %}{% if page.url != '/manifest.appcache' %}{{ page.url | replace:'index.html',''}}{% endif %}
 {% endfor %}
 
 NETWORK:
