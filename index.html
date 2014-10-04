@@ -2,12 +2,8 @@
 layout: default
 title: Lectures
 ---
-<div class="home">
-
 {% for post in site.posts limit:1 %}
-
-  {% include post.html %}
-
-{% endfor %}
+<div class="home" data-post-date="{{ post.date | date: "%Y-%m-%d" }}">
 
 </div>
+{% endfor %}

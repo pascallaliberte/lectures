@@ -1,5 +1,5 @@
 <span class="post-date-weekday">
-  {% assign w = post.date | date: "%-w" %}
+  {% assign w = page.date | date: "%-w" %}
   {% case w %}
     {% when '0' %}<span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">Dimanche prochain</span>
     {% when '1' %}Lundi
@@ -9,8 +9,8 @@
     {% when '5' %}Vendredi
     {% when '6' %}Samedi
   {% endcase %}</span><span class="post-date-day-month-year"><span class="post-date-separator">,</span>
-{% assign d = post.date | date: "%-d" %}
-{% assign m = post.date | date: "%-m" %}
+{% assign d = page.date | date: "%-d" %}
+{% assign m = page.date | date: "%-m" %}
 
 <span class="post-date-day-of-month">{{ d }}{% if d == "1" %}<sup>er</sup>{% endif %}</span>
 
@@ -32,7 +32,7 @@
 </span>
 
 <span class="post-date-year">
-{{ post.date | date: "%Y"}}
+{{ page.date | date: "%Y"}}
 </span>
 
 </span><!-- /.post-date-day-month-year -->
