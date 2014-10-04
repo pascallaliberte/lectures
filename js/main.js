@@ -1,5 +1,14 @@
 $( document ).ready(function() {
 
+  if (window.applicationCache) {
+    applicationCache.addEventListener('updateready', function() {
+      // force the new version of the page without making the user refresh
+      window.applicationCache.swapCache();
+      enable_main_readings();
+      enable_additional_readings();
+    });
+  }
+
   $(window).on("popstate", function(e) {
     enable_main_readings();
     enable_additional_readings();
