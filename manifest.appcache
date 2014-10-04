@@ -10,6 +10,11 @@ CACHE:
 {% for page in site.pages %}{% if page.url != '/manifest.appcache' %}{{ page.url | replace:'index.html',''}}{% endif %}
 {% endfor %}
 
+http://use.typekit.net/ugq1okm.js
+https://use.typekit.net/ugq1okm.js
+/bower_components/jquery/dist/jquery.min.js
+/js/main.js
+
 NETWORK:
 *
 http://*
