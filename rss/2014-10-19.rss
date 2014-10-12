@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link rel="self" type="application/rss+xml" href="http://rss.aelf.org/rss.php/messe"/>
+        <title>AELF</title>
+        <description><![CDATA[(c) Association Épiscopale Liturgique pour les pays francophones - 2014]]></description>
+        <link>http://aelf.org</link>
+        <pubDate>Sun, 12 Oct 2014 20:25:43 +0200</pubDate>
+        <lastBuildDate>Sun, 12 Oct 2014 20:25:43 +0200</lastBuildDate>
+        <image>
+            <title>AELF</title>
+            <url>http://aelf.org/images/logo.jpg</url>
+            <link>http://aelf.org</link>
+        </image>
+        <language>fr</language>
+        <copyright>Copyright AELF - Tout droits réservés</copyright>
+        <item>
+            <title>1ère lecture : Les empires sont dans la main de Dieu  (Is 45, 1.4-6a)</title>
+            <description><![CDATA[<p><b><i>Lecture du livre d'Isaïe</i></b></p><p>Parole du Seigneur au roi Cyrus, qu'il a consacré, qu'il a pris par la main, pour lui soumettre les nations et désarmer les rois, pour lui ouvrir les portes à deux battants, car aucune porte ne restera fermée : <br /><br /><span style="font-size: 7.5pt; font-family: Verdana">« </span>À cause de mon serviteur Jacob et d'Israël mon élu, je t'ai appelé par ton nom, je t'ai décerné un titre, alors que tu ne me connaissais pas. <br /><br />Je suis le Seigneur, il n'y en a pas d'autre : en dehors de moi, il n'y a pas de Dieu. Je t'ai rendu puissant, alors que tu ne me connaissais pas, pour que l'on sache, de l'orient à l'occident, qu'il n'y a rien en dehors de moi.<span style="font-size: 7.5pt; font-family: Verdana"><span> </span>»</span></p>]]></description>
+            <guid>1</guid>
+            <category>Messe</category>
+        </item>
+        <item>
+            <title>Psaume :  (95, 1a.3, 4.5b, 7-8a, 9a.10ac)</title>
+            <description><![CDATA[<p><font color="#CC0000">R/ Au Seigneur notre Dieu, <br />tout honneur et toute gloire</font></p><p>Chantez au Seigneur un chant nouveau, <br />racontez à tous les peuples sa gloire, <br />à toutes les nations ses merveilles ! <br /><br />Il est grand, le Seigneur, hautement loué, <br />redoutable au-dessus de tous les dieux : <br />lui, le Seigneur, a fait les cieux.<br /><br />Rendez au Seigneur, familles des peuples, <br />rendez au Seigneur la gloire et la puissance, <br />rendez au Seigneur la gloire de son nom. <br /><br />Adorez le Seigneur, éblouissant de sainteté : <br />Allez dire aux nations : « Le Seigneur est roi ! » <br />Il gouverne les peuples avec droiture. </p>]]></description>
+            <guid>2</guid>
+            <category>Messe</category>
+        </item>
+        <item>
+            <title>2ème lecture : La foi, l'espérance et la charité de la communauté  (1Th 1, 1-5b)</title>
+            <description><![CDATA[<p><b><i>Commencement de la lettre de saint Paul apôtre aux Thessaloniciens</i></b></p><p>Nous, Paul, Silvain et Timothée, nous nous adressons à vous, l'Église de Thessalonique qui est en Dieu le Père et en Jésus Christ le Seigneur. Que la grâce et la paix soient avec vous. <br /><br />À tout instant, nous rendons grâce à Dieu à cause de vous tous, en faisant mention de vous dans nos prières. Sans cesse, nous nous souvenons que votre foi est active, que votre charité se donne de la peine, que votre espérance tient bon en notre Seigneur Jésus Christ, en présence de Dieu notre Père. Nous le savons, frères bien-aimés de Dieu, vous avez été choisis par lui. En effet, notre annonce de l'Évangile chez vous n'a pas été simple parole, mais puissance, action de l'Esprit Saint, certitude absolue.</p>]]></description>
+            <guid>3</guid>
+            <category>Messe</category>
+        </item>
+        <item>
+            <title>Evangile : À César ce qui est à César, et à Dieu ce qui est à Dieu  (Mt 22, 15-21)</title>
+            <description><![CDATA[<p><b><i>Évangile de Jésus Christ selon saint Matthieu</i></b></p><br /><blockquote><b>Acclamation :</b> <strong>Alléluia. Alléluia. </strong>Rendez au Seigneur, vous les dieux, rendez au Seigneur gloire et puissance, rendez au Seigneur la gloire de son nom. <strong>Alléluia. </strong> <small><i>(cf. Ps 28, 1-2)</i></small></blockquote><p>Les pharisiens se concertèrent pour voir comment prendre en faute Jésus en le faisant parler. Ils lui envoient leurs disciples, accompagnés des partisans d'Hérode : « Maître, lui disent-ils, nous le savons : tu es toujours vrai et tu enseignes le vrai chemin de Dieu ; tu ne te laisses influencer par personne, car tu ne fais pas de différence entre les gens. Donne-nous ton avis : Est-il permis, oui ou non, de payer l'impôt à l'empereur ? » <br />Mais Jésus, connaissant leur perversité, riposta : « Hypocrites ! pourquoi voulez-vous me mettre à l'épreuve ? Montrez-moi la monnaie de l'impôt. » <br />Ils lui présentèrent une pièce d'argent. Il leur dit : « Cette effigie et cette légende, de qui sont-elles ? - De l'empereur César », répondirent-ils. <br />Alors il leur dit : « Rendez donc à César ce qui est à César, et à Dieu ce qui est à Dieu. » </p>]]></description>
+            <guid>4</guid>
+            <category>Messe</category>
+        </item>
+    </channel>
+</rss>
