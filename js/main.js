@@ -18,6 +18,7 @@ $( document ).ready(function() {
 });
 
 enable_main_readings = function () {
+  if(window.main_readings_ready) return;
   readings_url = "/{date}/";
   readings_date = $('.home').eq(0).data('post-date');
   readings_url = readings_url.replace(/\{date\}/, readings_date);
@@ -28,9 +29,12 @@ enable_main_readings = function () {
       $(this).html( data );
     });
   });
+
+  window.main_readings_ready = true;
 }
 
 enable_additional_readings = function () {
+  if (window.additional_readings_ready) return;
   readings_url = "/additionnelles/{date}.html";
   readings_date = $('.home').eq(0).data('post-date');
   readings_url = readings_url.replace(/\{date\}/, readings_date);
@@ -50,4 +54,5 @@ enable_additional_readings = function () {
 
     });
   });
+  window.additional_readings_ready = true;
 }
