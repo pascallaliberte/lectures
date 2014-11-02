@@ -15,6 +15,9 @@ $( document ).ready(function() {
     $( ".post-readings-additional").eq(0).remove();
   });
 
+  enable_main_readings();
+  enable_additional_readings();
+
 });
 
 enable_main_readings = function () {
