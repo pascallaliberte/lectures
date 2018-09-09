@@ -34,7 +34,13 @@
         <span class="post-meta">
           <span class="post-date post-date-upcoming">
             <span class="post-date-weekday">
-              <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">Dimanche prochain</span>
+              <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">
+                <% if(isTodaySunday) { %>
+                  <%= "Aujourd'hui" %>
+                <% } else { %>
+                  Dimanche prochain  
+                <% } %>
+              </span>
               </span><span class="post-date-day-month-year"><span class="post-date-separator">,</span>
               <span class="post-date-day-of-month">
                 <%= date.getDate() %>

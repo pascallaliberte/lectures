@@ -24,14 +24,16 @@ app.use(sassMiddleware({
 
 // index page 
 app.get('/', function(req, res) {
-    function getNextSunday(d) {
-      d = new Date(d);
+    function getNextSundayFrom(today) {
+      d = new Date(today);
       var day = d.getDay(),
           diff = d.getDate() - day + 7; // next Sunday
       return new Date(d.setDate(diff));
     }
     
-    var date = getNextSunday(new Date())
+    var today = new Date()
+    var isTodaySunday = today.getDay() === 0;
+    var date = isTodaySunday? today: getNextSundayFrom(today)
     var api_date = date.toJSON().substring(0, 10);
   
     fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
@@ -45,6 +47,7 @@ app.get('/', function(req, res) {
       })
       
       res.render('index', { 
+        isTodaySunday: isTodaySunday,
         date: date,
         date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
         evangile: lectures.splice(evangile_index, 1)[0],
