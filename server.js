@@ -24,7 +24,17 @@ app.use(sassMiddleware({
 
 // index page 
 app.get('/', function(req, res) {
-    fetch('https://api.aelf.org/v1/messes/2018-09-16/canada')
+    function getNextSunday(d) {
+      d = new Date(d);
+      var day = d.getDay(),
+          diff = d.getDate() - day + 7; // next Sunday
+      return new Date(d.setDate(diff));
+    }
+    
+    var date = getNextSunday(new Date())
+    var api_date = date.toJSON().substring(0, 10);
+  
+    fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     .then(function(r) {
       return r.json();
     })
@@ -34,13 +44,13 @@ app.get('/', function(req, res) {
         return lecture.type === "evangile";
       })
       
-      console.log(evangile_index)
-      
       res.render('index', { 
+        date: date,
+        date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
         evangile: lectures.splice(evangile_index, 1)[0],
         additionnelles: lectures,
         format_reading: function(html) {
-          return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace('– Acclamons la Parole de Dieu.', '')
+          return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '')
         }
       })
     });

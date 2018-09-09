@@ -30,12 +30,55 @@
 
     <header class="post-header">
       <div id="post-readings-additional-toggle"><a id="post-readings-additional-toggle-link" href="#">Afficher les autres textes</a></div>
-      <h1 class="post-title">Dimanche prochain, 16 sept.</h1>
+      <h1>
+        <span class="post-meta">
+          <span class="post-date post-date-upcoming">
+            <span class="post-date-weekday">
+              <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">Dimanche prochain</span>
+              </span><span class="post-date-day-month-year"><span class="post-date-separator">,</span>
+              <span class="post-date-day-of-month">
+                <%= date.getDate() %>
+              </span>
+
+              <span class="post-date-month">
+                <%= date_month_abbr %>
+              </span>
+
+              <span class="post-date-year">
+                <%= date.getFullYear() %>
+              </span>
+
+            </span><!-- /.post-date-day-month-year -->
+
+          </span>
+        </span>
+      </h1>
+      
     </header>
 
     <article class="post-content">
       <div class="post-readings post-readings-additional">
-        Lectures additionnelles
+        <% additionnelles.forEach(function(lecture) { %>
+          <% if (lecture.type === 'psaume') { %>
+            <h2>Psaume</h2>
+            <h3><%= lecture.ref %></h3>
+            
+            <%- lecture.refrain_psalmique.replace(/p>/, 'p>R/ ') %>
+            <%- lecture.contenu %>
+          <% } else { %>
+            <h2>
+              <% if (lecture.type === 'lecture_1') { %>
+                1ère lecture
+              <% } %>
+              <% if (lecture.type === 'lecture_2') { %>
+                2ème lecture
+              <% } %>
+            </h2>
+            <h3><%= lecture.ref %></h3>
+            <%- format_reading(lecture.contenu) %>
+          <% } %>
+          
+        <% }) %>
       </div>
       
       <div class="post-readings">
