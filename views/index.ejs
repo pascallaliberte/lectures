@@ -24,8 +24,29 @@
     <div class="page-content">
       <div class="wrapper">
         
-<div class="home" data-post-date="2015-01-04">
+<div class="home">
+  
+  <div class="post">
 
+    <header class="post-header">
+      <div id="post-readings-additional-toggle"><a id="post-readings-additional-toggle-link" href="#">Afficher les autres textes</a></div>
+      <h1 class="post-title">Dimanche prochain, 16 sept.</h1>
+    </header>
+
+    <article class="post-content">
+      <div class="post-readings post-readings-additional">
+        Lectures additionnelles
+      </div>
+      
+      <div class="post-readings">
+        <h2>Évangile</h2>
+        <h3><%= evangile.ref %></h3>
+        <%- format_reading(evangile.contenu) %>
+      </div>
+    </article>
+
+  </div>
+  
 </div>
 
 

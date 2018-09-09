@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var sassMiddleware = require('node-sass-middleware')
+global.fetch = require('node-fetch');
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -23,7 +24,26 @@ app.use(sassMiddleware({
 
 // index page 
 app.get('/', function(req, res) {
-    res.render('index');
+    fetch('https://api.aelf.org/v1/messes/2018-09-16/canada')
+    .then(function(r) {
+      return r.json();
+    })
+    .then(function(json) {
+      var lectures = json.messes[0].lectures;
+      var evangile_index = lectures.findIndex(function(lecture) {
+        return lecture.type === "evangile";
+      })
+      
+      console.log(evangile_index)
+      
+      res.render('index', { 
+        evangile: lectures.splice(evangile_index, 1)[0],
+        additionnelles: lectures,
+        format_reading: function(html) {
+          return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace('– Acclamons la Parole de Dieu.', '')
+        }
+      })
+    });
 });
 
 app.use('/js', express.static('js'))
