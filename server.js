@@ -59,5 +59,6 @@ app.get('/', function(req, res) {
 app.use('/js', express.static('js'))
 app.use('/css', express.static('css'))
 app.use('/bower_components', express.static('bower_components'))
+app.use(express.static('public'))
 
 app.listen(8080);
