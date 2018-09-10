@@ -15,8 +15,15 @@ dl, dd, ol, ul, figure {
  */
 body {
     font-family: $base-font-family;
+    font-size: $mobile-font-size;
     font-size: $base-font-size;
     line-height: $base-line-height;
+    
+    @include media-query($on-mobile) {
+      font-size: $mobile-font-size;
+      line-height: $mobile-line-height;
+    }
+    
     font-weight: 300;
     color: $text-color;
     background-color: $background-color;
@@ -55,6 +62,9 @@ figure > img {
 
 figcaption {
     font-size: $small-font-size;
+    @include media-query($on-mobile) {
+      font-size: $mobile-small-font-size;
+    }
 }
 
 
