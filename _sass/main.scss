@@ -4,10 +4,15 @@
 
 // Our variables
 $base-font-family: 'source-serif-pro', serif;
+$heading-font-family: 'myriad-pro', sans-serif;
+
 $base-font-size:   24px;
 $small-font-size:  $base-font-size * 0.75;
 $base-line-height: 1.25;
-$heading-font-family: 'myriad-pro', sans-serif;
+
+$mobile-font-size: 20px;
+$mobile-small-font-size:  $mobile-font-size * 0.75;
+$mobile-line-height: 1.3;
 
 $spacing-unit:     30px;
 
@@ -19,7 +24,7 @@ $grey-color:       #9B9B9B;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
-$on-palm:          600px;
+$on-mobile:        600px;
 $on-laptop:        800px;
 
 
