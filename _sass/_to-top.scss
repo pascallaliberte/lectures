@@ -24,3 +24,9 @@
 .js a.to-top {
   text-indent: -1000em;
 }
+
+@media print {
+  .is-top .to-top {
+    display: none;
+  }
+}

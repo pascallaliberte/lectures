@@ -231,6 +231,14 @@
     max-width: 80%;
     font-size: 0.8em;
   }
+  
+  .is-top.is-not-touch {
+    .home {
+      filter: none;
+      -webkit-filter: none;
+    }
+  }
+  
   #post-readings-additional-toggle {
     display: none;
   }
