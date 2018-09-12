@@ -85,9 +85,10 @@
   enable_sroll_trick = function() {
     $("body").eq(0).addClass('js');
 
-    $(".intro-more,.to-top").smoothScroll({
+    $(".to-top").smoothScroll({
       easing: 'easeOutQuart',
-      speed: 600
+      speed: 600,
+      preventDefault: true
     });
 
     topGutterHeight = parseInt($("body").eq(0).css("padding-top"))

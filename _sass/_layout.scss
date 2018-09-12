@@ -186,6 +186,7 @@
 .post-content {
     margin-top: 2em;
     margin-bottom: 12em;
+    
 
     h2 {
       font-family: $heading-font-family;
@@ -215,6 +216,14 @@
         }
     }
 }
+
+.is-top.is-not-touch {
+  .home {
+    filter: blur(2px); // Blur it
+    -webkit-filter: blur(2px); // Blur it
+  }
+}
+
 
 @media print {
   .post-content {
