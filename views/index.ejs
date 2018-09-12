@@ -19,46 +19,55 @@
 </head>
 
 
-  <body>
-
-    <div class="page-content">
+  <body class="liturgical-color-<%= liturgicalColor %>">
+    
+    <aside class="about">
+      <div class="wrapper">
+        <div class="about-details">
+          <p class="about-description">Lectures du missel romain du dimanche prochain, adaptée pour la lecture personnelle ou de groupe.</p>
+          <p class="about-signature">
+            <span class="about-signature-name">Conception de <a href="https://pascallaliberte.me" rel="author">Pascal Laliberté.</a></span>
+            Textes de l'<a href="https://www.aelf.org">AELF</a>.
+          </p>
+        </div>
+      </div>
+    </aside>
+    
+    <div class="page-content" id="lectures">
       <div class="wrapper">
         
 <div class="home">
   
   <div class="post">
-
     <header class="post-header">
       <div id="post-readings-additional-toggle"><a id="post-readings-additional-toggle-link" href="#">Afficher les autres textes</a></div>
-      <h1>
-        <span class="post-meta">
-          <span class="post-date post-date-upcoming">
-            <span class="post-date-weekday">
-              <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">
-                <% if(isTodaySunday) { %>
-                  <%= "Aujourd'hui" %>
-                <% } else { %>
-                  Dimanche prochain  
-                <% } %>
-              </span>
-              </span><span class="post-date-day-month-year"><span class="post-date-separator">,</span>
-              <span class="post-date-day-of-month">
-                <%= date.getDate() %>
-              </span>
+      <span class="post-meta">
+        <span class="post-date post-date-upcoming">
+          <span class="post-date-weekday">
+            <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">
+              <% if(isTodaySunday) { %>
+                <%= "Aujourd'hui" %>
+              <% } else { %>
+                Dimanche prochain  
+              <% } %>
+            </span>
+            </span><span class="post-date-day-month-year"><span class="post-date-separator">,</span>
+            <span class="post-date-day-of-month">
+              <%= date.getDate() %>
+            </span>
 
-              <span class="post-date-month">
-                <%= date_month_abbr %>
-              </span>
+            <span class="post-date-month">
+              <%= date_month_abbr %>
+            </span>
 
-              <span class="post-date-year">
-                <%= date.getFullYear() %>
-              </span>
+            <span class="post-date-year">
+              <%= date.getFullYear() %>
+            </span>
 
-            </span><!-- /.post-date-day-month-year -->
+          </span><!-- /.post-date-day-month-year -->
 
-          </span>
         </span>
-      </h1>
+      </span>
       
     </header>
 
@@ -93,6 +102,8 @@
         <%- format_reading(evangile.contenu) %>
       </div>
     </article>
+    
+    <a class="to-top" href="#lectures">Revenir aux lectures</a>
 
   </div>
   
@@ -104,6 +115,7 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="/bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+  <script src="//unpkg.com/jquery-smooth-scroll@2.2.0/jquery.smooth-scroll.js"></script>
   <script src="/js/main.js"></script>
 
 

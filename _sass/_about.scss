@@ -1,0 +1,153 @@
+.js .about {
+  position: absolute;
+  height: 308px;
+  font-size: 25px;
+  line-height: 1.2;
+  background: white;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: white;
+  z-index: 2;
+  overflow: hidden;
+  
+  font-family: $heading-font-family;
+  
+  @include media-query($on-mobile) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.js.liturgical-color-vert .about { background-color: rgb(0, 88, 0); }
+.js.liturgical-color-rouge .about { background-color: rgb(151, 0, 0); }
+.js.liturgical-color-noir .about { background-color: #333; }
+.js.liturgical-color-violet .about { background-color: rgb(92, 0, 92); }
+.js.liturgical-color-rose .about { background-color: rgb(223, 168, 177); color: black; }
+.js.liturgical-color-blanc {
+  background-color: #fafafa;
+  .about {
+    background-color: white;
+    color: black;
+  }  
+}
+
+.js {
+  padding-top: 300px;
+}
+
+.js .about a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.js .about-details {
+  padding-top: 150px;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.js .about-details {
+  margin: 0 auto;
+  opacity: 0;
+  
+  .about-description {
+    margin-right: 20%;
+  }
+}
+
+.is-home .about-details {
+  opacity: 1;
+}
+
+.is-not-home .about-details {
+  opacity: 0;
+}
+
+.is-top-gutter-shown .about-details {
+  opacity: 1;
+}
+
+.about-name {
+  font-size: 50px;
+  line-height: 1;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-style: normal;
+  @include media-query($on-mobile) {
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 20px;  
+  }
+}
+
+.js .about-links, .js .about-signature {
+  @extend %clearfix;
+  font-size: 16px;
+  line-height: 25px;
+  @include media-query($on-mobile) {
+    font-size: 14px;
+    line-height: 18px;  
+  }
+}
+
+.js .about-links {
+  margin-top: -3px;
+}
+
+.js .about-links-home {
+  float: left;
+  display: inline-block;
+  .fa {
+    //icon
+    padding-right: 2px;
+  }
+}
+
+.js .about-links-alt-lang {
+  float: right;
+  display: inline-block;
+  .fa {
+    //icon
+    padding-left: 5px;
+  }
+}
+
+.js .about-signature-follow {
+  margin: 0;
+  white-space: nowrap;
+  display: inline-block;
+  margin-top: 0;
+  @include media-query($on-mobile) {
+    margin-top: 5px;
+  }
+}
+
+.js .about-signature-name {
+  padding-right: 10px;
+}
+
+.js .about-signature {
+  padding-top: 5px;
+  margin-top: -5px;
+  @include media-query($on-mobile) {
+    padding-top: 0;
+    margin-top: -3px;
+  }
+}
+
+.about-signature-follow .fa {
+  font-size: 25px;
+  padding-right: 10px;
+}
+
+@media print {
+  .js.is-not-home {
+    padding-top: 0;
+  }
+  .js .about {
+    display: none;
+  }
+}
