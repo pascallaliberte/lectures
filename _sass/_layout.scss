@@ -92,6 +92,7 @@
  * Page content
  */
 .page-content {
+    position: relative;
     padding: $spacing-unit 0;
 }
 
@@ -118,7 +119,7 @@
 
 .post-meta .post-date {
   position: absolute;
-  top: 1em;
+  top: 1.5em;
   right: 25px;
   font-size: $small-font-size;
   @include media-query($on-mobile) {
@@ -170,7 +171,7 @@
 
 #post-readings-additional-toggle {
   position: absolute;
-  top: 1em;
+  top: 1.5em;
   font-size: $small-font-size;
   @include media-query($on-mobile) {
     font-size: $mobile-small-font-size;

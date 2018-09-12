@@ -47,6 +47,7 @@ app.get('/', function(req, res) {
       })
       
       res.render('index', { 
+        liturgicalColor: json.informations.couleur,
         isTodaySunday: isTodaySunday,
         date: date,
         date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
