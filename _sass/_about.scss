@@ -1,0 +1,168 @@
+.js .about {
+  position: absolute;
+  height: 308px;
+  font-size: 16px;
+  line-height: 25px;
+  background: green;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: white;
+  z-index: 2;
+  overflow: hidden;
+  
+  @include media-query($on-mobile) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.js {
+  padding-top: 300px;
+}
+
+.js .about a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.js .about-details {
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.js .about-details {
+  max-width: 30em;
+  margin: 0 auto;
+  opacity: 0;
+}
+
+.is-home .about-details {
+  opacity: 1;
+}
+
+.is-not-home .about-details {
+  opacity: 0;
+}
+
+.is-top-gutter-shown .about-details {
+  opacity: 1;
+}
+
+.about-name {
+  font-size: 28px;
+  line-height: 35px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-style: normal;
+  @include media-query($on-mobile) {
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 20px;  
+  }
+}
+
+.js .about-links, .js .about-signature {
+  @extend %clearfix;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 25px;
+  @include media-query($on-mobile) {
+    font-size: 14px;
+    line-height: 18px;  
+  }
+}
+
+.js .about-links {
+  margin-top: -3px;
+}
+
+.js .about-links-home {
+  float: left;
+  display: inline-block;
+  .fa {
+    //icon
+    padding-right: 2px;
+  }
+}
+
+.js .about-links-alt-lang {
+  float: right;
+  display: inline-block;
+  .fa {
+    //icon
+    padding-left: 5px;
+  }
+}
+
+.js .about-signature-follow {
+  margin: 0;
+  white-space: nowrap;
+  display: inline-block;
+  margin-top: 0;
+  @include media-query($on-mobile) {
+    margin-top: 5px;
+  }
+}
+
+.js .about-signature-name {
+  padding-right: 10px;
+}
+
+.js .about-signature {
+  padding-top: 5px;
+  margin-top: -5px;
+  @include media-query($on-mobile) {
+    padding-top: 0;
+    margin-top: -3px;
+  }
+}
+
+.about-signature-follow .fa {
+  font-size: 25px;
+  padding-right: 10px;
+}
+
+.js .about-links a, .js .about-signature a {
+  text-decoration: none;
+}
+
+.js .about-links a:hover, .js .about-signature a:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.js .about, .is-home .about {
+  .btn-default {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    z-index: 10;
+    margin-top: 0;
+    &:hover, &:active, &:focus {
+      color: rgba(255, 255, 255, 1);
+      border-color: rgba(255, 255, 255, 1);
+      background-color: rgba(255, 255, 255, 0.1);
+      outline: none;
+    }
+    @include media-query($on-mobile) {
+      margin-top: 5px;
+    }
+  }
+}
+
+.subscribe-follow-link .fa {
+  margin-left: -2px;
+  margin-right: 2px;
+}
+
+@media print {
+  .js.is-not-home {
+    padding-top: 0;
+  }
+  .js.is-not-home .about {
+    display: none;
+  }
+}
