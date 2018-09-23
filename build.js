@@ -14,9 +14,6 @@ fs.copySync('public/', dist)
 fs.copySync('js/', dist + 'js/')
 fs.copySync('bower_components/', dist + 'bower_components/')
 
-// build the css
-
-
 // build the page
 function getNextSundayFrom(today) {
   d = new Date(today);
@@ -54,3 +51,6 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     fs.writeFileSync(dist + 'index.html', str)
   })
 });
+
+var console_green = "\x1b[32m"
+console.log(console_green, "Published to " + dist)
