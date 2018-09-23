@@ -1,4 +1,5 @@
-_site
+dist
 .sass-cache
 css/*.css
 node_modules
+.zip
