@@ -11,7 +11,7 @@
   z-index: 2;
   overflow: hidden;
   
-  font-family: $heading-font-family;
+  font-family: $base-font-family;
   
   @include media-query($on-mobile) {
     font-size: 14px;
