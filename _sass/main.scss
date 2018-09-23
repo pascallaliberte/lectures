@@ -3,8 +3,8 @@
 
 
 // Our variables
-$base-font-family: 'source-serif-pro', serif;
-$heading-font-family: 'myriad-pro', 'verdana', sans-serif;
+$base-font-family: 'SourceSerifPro-Regular', serif;
+$heading-font-family: 'BeatrixAntiqua-SemiBold', 'verdana', sans-serif;
 
 $base-font-size:   24px;
 $small-font-size:  $base-font-size * 0.75;
@@ -46,6 +46,7 @@ $on-laptop:        800px;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
+        "fonts",
         "base",
         "layout",
         "to-top",

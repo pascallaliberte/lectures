@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "build": "node build.js && yarn build-css",
-    "build-css": "node-sass _sass/main.scss dist/css/main.css"
+    "build-css": "node-sass _sass/main.scss dist/css/main.css",
+    "watch": "yarn build && node watch.js"
   },
   "dependencies": {
     "ejs": "^2.6.1",

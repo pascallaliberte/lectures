@@ -15,3 +15,4 @@ app.use(sassMiddleware({
 app.use(express.static('dist'))
 
 app.listen(8080);
+console.log("Listening at http://localhost:8080")
