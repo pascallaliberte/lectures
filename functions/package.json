@@ -5,5 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "request": "^2.88.0"
+  },
+  "scripts": {
+    "zip": "zip -r build-netlify-lamda.zip index.js node_modules/"
   }
 }
