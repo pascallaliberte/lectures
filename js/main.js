@@ -1,3 +1,6 @@
+import jQuery from 'jquery'
+import 'jquery.smooth-scroll'
+
 (function($){
   
   jQuery.extend( jQuery.easing, // from http://gsgd.co.uk/sandbox/jquery/easing/
@@ -7,19 +10,7 @@
     }
   });
 
-  $( document ).ready(function() {
-
-    $(window).on("popstate", function(e) {
-      enable_additional_readings();
-      $( ".post-readings-additional").eq(0).remove();
-    });
-
-    enable_additional_readings();
-    enable_sroll_trick();
-    
-  });
-
-  enable_additional_readings = function () {
+  var enable_additional_readings = function () {
     $('#post-readings-additional-toggle-link').click(function(event) {
       event.preventDefault();
       $( '#post-readings-additional-toggle').remove();
@@ -28,14 +19,14 @@
     });
   }
 
-  is_touch_device = function() {
+  var is_touch_device = function() {
     return 'ontouchstart' in window // works on most browsers
         || 'onmsgesturechange' in window; // works on ie10
   };
 
-  update_page_properties = function(){
-    scrollPos = $(window).scrollTop();
-    topGutterHeight = parseInt($("body").eq(0).css("padding-top"))
+  var update_page_properties = function(){
+    var scrollPos = $(window).scrollTop();
+    var topGutterHeight = parseInt($("body").eq(0).css("padding-top"))
 
     if (0 >= scrollPos) {
       $("body").eq(0).addClass('is-top');
@@ -70,7 +61,7 @@
     }
 
     setTimeout(function(){
-      scrollPos = $(window).scrollTop();
+      var scrollPos = $(window).scrollTop();
 
       if (scrollPos < (topGutterHeight - 31)) {
         $("body").eq(0).addClass('is-top-gutter-shown');
@@ -82,7 +73,7 @@
     }, 500);
   }
   
-  enable_sroll_trick = function() {
+  var enable_sroll_trick = function() {
     $("body").eq(0).addClass('js');
 
     $(".to-top").smoothScroll({
@@ -91,7 +82,7 @@
       preventDefault: true
     });
 
-    topGutterHeight = parseInt($("body").eq(0).css("padding-top"))
+    var topGutterHeight = parseInt($("body").eq(0).css("padding-top"))
 
     $(".site").eq(0).css("min-height",$( window ).height());
 
@@ -106,4 +97,16 @@
       update_page_properties()
     });
   }
+  
+  $( document ).ready(function() {
+
+    $(window).on("popstate", function(e) {
+      enable_additional_readings();
+      $( ".post-readings-additional").eq(0).remove();
+    });
+
+    enable_additional_readings();
+    enable_sroll_trick();
+    
+  });
 })(jQuery);

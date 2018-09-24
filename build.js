@@ -12,7 +12,6 @@ rimraf.sync(dist)
 // copy the public directories
 fs.copySync('public/', dist)
 fs.copySync('fonts/', dist + 'fonts/')
-fs.copySync('bower_components/', dist + 'bower_components/')
 
 // build the page
 function getNextSundayFrom(today) {
