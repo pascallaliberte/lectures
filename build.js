@@ -42,9 +42,11 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     date: date,
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
     evangile: lectures.splice(evangile_index, 1)[0],
-    additionnelles: lectures,
+    additionnelles: lectures.filter(function(lecture){
+      return lecture.type !== "evangile" // filter out second evangile (lecture brève)
+    }),
     format_reading: function(html) {
-      return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/\s([:;?!»])/gi, '&nbsp;$1').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '')
+      return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/\s([:;?!»])/gi, '&nbsp;$1').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '')
     }
   }, {}, function (err, str) {
     fs.writeFileSync(dist + 'index.html', str)
