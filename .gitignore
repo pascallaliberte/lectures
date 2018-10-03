@@ -3,3 +3,5 @@ dist
 css/*.css
 node_modules
 .zip
+fonts/purchased/*
+!fonts/purchased/.gitkeep
