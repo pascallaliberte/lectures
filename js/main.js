@@ -13,9 +13,18 @@ import 'jquery.smooth-scroll'
   var enable_additional_readings = function () {
     $('#post-readings-additional-toggle-link').click(function(event) {
       event.preventDefault();
-      $( '#post-readings-additional-toggle').remove();
-      $( ".post-readings-additional").eq(0).slideDown();
-      history.pushState({}, null);
+      var isExpanded = $('#post-readings-additional-toggle').attr('aria-expanded') === "true"
+      if (!isExpanded) {
+        $( ".post-readings-additional").eq(0).slideDown();
+      } else {
+        $( ".post-readings-additional").eq(0).slideUp();
+      }
+      
+      var currentText = $(this).text()
+      $(this).text($(this).data('change-to'))
+      $(this).data('change-to', currentText)
+      
+      $('#post-readings-additional-toggle').attr('aria-expanded', isExpanded? "false": "true")
     });
   }
 
