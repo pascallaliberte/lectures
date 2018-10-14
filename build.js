@@ -1,6 +1,7 @@
 var fs = require('fs-extra')
 var rimraf = require('rimraf')
 var ejs = require('ejs')
+var time = require('time')
 global.fetch = require('node-fetch');
 
 var dist = "dist/"
@@ -21,8 +22,11 @@ function getNextSundayFrom(today) {
   return new Date(d.setDate(diff));
 }
 
-var today = new Date()
+var today = new time.Date()
+today = today.setTimezone('America/Toronto')
+
 var isTodaySunday = today.getDay() === 0;
+var isTodaySaturday = today.getDay() === 6;
 var date = isTodaySunday? today: getNextSundayFrom(today)
 var api_date = date.toJSON().substring(0, 10);
 
@@ -39,6 +43,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
   ejs.renderFile(views + 'index.ejs', { 
     liturgicalColor: json.informations.couleur,
     isTodaySunday: isTodaySunday,
+    isTodaySaturday: isTodaySaturday,
     date: date,
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
     evangile: lectures.splice(evangile_index, 1)[0],

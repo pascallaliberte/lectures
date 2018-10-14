@@ -45,6 +45,8 @@
             <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">
               <% if(isTodaySunday) { %>
                 <%= "Aujourd'hui" %>
+              <% } else if (isTodaySaturday) { %>
+                Demain
               <% } else { %>
                 Dimanche prochain  
               <% } %>
