@@ -160,7 +160,7 @@
     position: absolute;
     bottom: 3em;
     right: 0;
-    left: 0;
+    min-width: 12em;
     text-align: right;
     float: right;
     color: transparentize(white, 0.5);
