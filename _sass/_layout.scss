@@ -151,6 +151,10 @@
     right: 0;
     height: 0;
     z-index: 10;
+    @include media-query($on-mobile) {
+      left: auto;
+      width: calc(100vw - 50px);
+    }
   }
   .post-date-more-info {
     position: absolute;
@@ -185,7 +189,7 @@
 }
 
 .post-readings {
-  border-top: 1px solid white;
+  border-top: 1px solid rgba(0,0,0,0);
 }
 
 .post-readings-additional {
@@ -240,14 +244,6 @@
         }
     }
 }
-
-.is-top.is-not-touch {
-  .home {
-    filter: blur(2px); // Blur it
-    -webkit-filter: blur(2px); // Blur it
-  }
-}
-
 
 @media print {
   .post-content {

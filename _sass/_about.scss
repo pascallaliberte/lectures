@@ -29,7 +29,13 @@
   .about {
     background-color: white;
     color: black;
-  }  
+  }
+  .page-content {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 120px);
+  }
+  .post-meta .post-date .post-date-more-info {
+    color: #999;
+  }
 }
 
 .js {
@@ -46,6 +52,9 @@
   opacity: 1;
   transition-property: opacity;
   transition-duration: 0.5s;
+  @include media-query($on-mobile) {
+    padding-top: 80px;
+  }
 }
 
 .js .about-details {
@@ -54,6 +63,10 @@
   
   .about-description {
     margin-right: 20%;
+    @include media-query($on-mobile) {
+      font-size: 23px;
+      line-height: 1.1;
+    }
   }
 }
 
