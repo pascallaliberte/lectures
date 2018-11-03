@@ -51,6 +51,8 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     isTodaySaturday: isTodaySaturday,
     date: date,
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
+    annee: json.informations.annee,
+    jour_liturgique_nom: json.informations.jour_liturgique_nom,
     evangile: lectures.splice(evangile_index, 1)[0],
     additionnelles: lectures.filter(function(lecture){
       return lecture.type !== "evangile" // filter out second evangile (lecture brève)

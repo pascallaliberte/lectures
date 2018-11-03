@@ -39,8 +39,8 @@
   <div class="post">
     <header class="post-header">
       <div id="post-readings-additional-toggle" aria-expanded="false"><a id="post-readings-additional-toggle-link" href="#" data-change-to="Afficher seulement l'Évangile">Afficher les autres textes</a></div>
-      <span class="post-meta">
-        <span class="post-date post-date-upcoming">
+      <div class="post-meta">
+        <div class="post-date post-date-upcoming">
           <span class="post-date-weekday">
             <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">
               <% if(isTodaySunday) { %>
@@ -65,9 +65,14 @@
             </span>
 
           </span><!-- /.post-date-day-month-year -->
-
-        </span>
-      </span>
+          <div class="post-date-more-info-wrapper">
+            <div class="post-date-more-info">
+              <span class="jour-liturgique-nom"><%= jour_liturgique_nom %></span>, 
+              <span class="annee">Année <%= annee %></span>
+            </div>
+          </div>
+        </div>
+      </div>
       
     </header>
 

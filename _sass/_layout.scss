@@ -143,6 +143,25 @@
       display: none;
     }
   }
+  
+  .post-date-more-info-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 10;
+  }
+  .post-date-more-info {
+    position: absolute;
+    bottom: 3em;
+    right: 0;
+    left: 0;
+    text-align: right;
+    float: right;
+    color: transparentize(white, 0.5);
+    font-size: 0.85em;
+  }
 }
 
 
