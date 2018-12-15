@@ -23,7 +23,12 @@
 .js.liturgical-color-rouge .about { background-color: rgb(151, 0, 0); }
 .js.liturgical-color-noir .about { background-color: #333; }
 .js.liturgical-color-violet .about { background-color: rgb(92, 0, 92); }
-.js.liturgical-color-rose .about { background-color: rgb(223, 168, 177); color: black; }
+.js.liturgical-color-rose {
+  .about { background-color: rgb(223, 168, 177); color: black; }
+  .post-meta .post-date .post-date-more-info {
+    color: transparentize(black, 0.5);
+  }
+}
 .js.liturgical-color-blanc {
   background-color: #fafafa;
   .about {
