@@ -5,11 +5,14 @@
  
  
 @font-face {
-  font-family: 'SourceSerifPro-Semibold';
-  src: url('../fonts/SourceSerifPro-Semibold.otf.woff2') format('woff2'),url('../fonts/SourceSerifPro-Semibold.ttf') format('truetype');
+  font-family: 'SourceSerifPro';
+  src: url('../fonts/SourceSerifPro-It.otf.woff2') format('woff2'),url('../fonts/SourceSerifPro-It.ttf') format('truetype');
+  font-weight:normal;
+  font-style: italic;
 }
 
 @font-face {
-  font-family: 'SourceSerifPro-Regular';
+  font-family: 'SourceSerifPro';
   src: url('../fonts/SourceSerifPro-Regular.otf.woff2') format('woff2'),url('../fonts/SourceSerifPro-Regular.ttf') format('truetype');
+  font-weight:normal;
 }
