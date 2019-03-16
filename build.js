@@ -25,6 +25,17 @@ function getNextSundayFrom(today) {
   return new time.Date(d.setDate(diff)).setTimezone(timezone);
 }
 
+function ensureUniqueLecturesReducer(set, currentLecture) {
+  if (set.findIndex(function(lecture) {
+    return lecture.type === currentLecture.type
+  }) !== -1) {
+    return set;
+  }
+  
+  set.push(currentLecture);
+  return set;
+}
+
 var today = new time.Date()
 today = today.setTimezone(timezone)
 
@@ -56,7 +67,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     evangile: lectures.splice(evangile_index, 1)[0],
     additionnelles: lectures.filter(function(lecture){
       return lecture.type !== "evangile" // filter out second evangile (lecture brève)
-    }),
+    }).reduce(ensureUniqueLecturesReducer, []),
     format_reading: function(html) {
       return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/\s([:;?!»])/gi, '&nbsp;$1').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '')
     }
