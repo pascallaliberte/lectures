@@ -46,6 +46,11 @@ var api_date = date
 api_date.setHours(api_date.getHours() - api_date.getTimezoneOffset() / 60);
 api_date = api_date.toJSON().substring(0, 10);
 
+if (process.env.DATE) {
+  console.log(`>> Using date ${process.env.DATE}`);
+  api_date = process.env.DATE;
+}
+
 fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
 .then(function(r) {
   return r.json();
