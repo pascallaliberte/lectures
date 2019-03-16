@@ -69,7 +69,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
       return lecture.type !== "evangile" // filter out second evangile (lecture brève)
     }).reduce(ensureUniqueLecturesReducer, []),
     format_reading: function(html) {
-      return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/\s([:;?!»])/gi, '&nbsp;$1').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '')
+      return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '').replace(/\<\/em\>([A-Z])/gi, '</em> $1')
     }
   }, {}, function (err, str) {
     fs.writeFileSync(dist + 'index.html', str)
