@@ -85,7 +85,7 @@
       <div class="post-readings post-readings-additional">
         <% additionnelles.forEach(function(lecture) { %>
           <% if (lecture.type === 'psaume') { %>
-            <h2>Psaume</h2>
+            <h2>P<span style="margin-left: 0.5px; margin-right: -0.5px;">s</span>aume</h2>
             <h3><%= lecture.ref %></h3>
             
             <%- lecture.refrain_psalmique.replace(/p>/, 'p>R/ ') %>
