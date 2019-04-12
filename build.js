@@ -36,6 +36,16 @@ function ensureUniqueLecturesReducer(set, currentLecture) {
   return set;
 }
 
+function getAllLecturesFromAllMesses(set, currentMesse) {
+  if (!currentMesse.lectures || currentMesse.lectures.length == 0) { return set; }
+  
+  currentMesse.lectures.forEach(function(lecture) {
+    set.push(lecture);
+  });
+  
+  return set;
+}
+
 var today = new time.Date()
 today = today.setTimezone(timezone)
 
@@ -56,7 +66,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
   return r.json();
 })
 .then(function(json) {
-  var lectures = json.messes[0].lectures;
+  var lectures = json.messes.reduce(getAllLecturesFromAllMesses, []);
   var evangile_index = lectures.findIndex(function(lecture) {
     return lecture.type === "evangile";
   })

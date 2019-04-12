@@ -98,6 +98,9 @@
               <% if (lecture.type === 'lecture_2') { %>
                 2<sup>ème</sup> lecture
               <% } %>
+              <% if (lecture.type === 'entree_messianique') { %>
+                Entrée messianique
+              <% } %>
             </h2>
             <h3><%= lecture.ref %></h3>
             <%- format_reading(lecture.contenu) %>
