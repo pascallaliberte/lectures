@@ -95,8 +95,8 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     additionnelles: lectures.filter(function(lecture){
       return lecture.type !== "evangile" // filter out second evangile (lecture brève)
     }).reduce(ensureUniqueLecturesReducer, []).map(function(lecture) {
-      lecture.contenu = formatReading(lecture)
-      return lecture
+      lecture = formatReading(lecture);
+      return lecture;
     })
   }, {}, function (err, str) {
     fs.writeFileSync(dist + 'index.html', str)
