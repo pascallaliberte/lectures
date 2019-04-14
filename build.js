@@ -61,6 +61,18 @@ if (process.env.DATE) {
   api_date = process.env.DATE;
 }
 
+function formatReading(lecture) {
+  lecture.contenu = lecture.contenu.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '').replace(/\<\/em\>([A-Z])/gi, '</em> $1');
+  
+  if (lecture.type === 'evangile' && lecture.contenu.indexOf('X = Jésus') !== -1) {
+    lecture.contenu = lecture.contenu
+      .replace(/(\s|>)X\s/g, '$1<span class="indicateur-interlocuteur">᛭</span>&nbsp;')
+      .replace(/(\s|>)([LDFA]\.?)\s/g, '$1<span class="indicateur-interlocuteur">$2</span>&nbsp;');
+  }
+  
+  return lecture;
+}
+
 fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
 .then(function(r) {
   return r.json();
@@ -79,13 +91,13 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
     annee: json.informations.annee,
     jour_liturgique_nom: json.informations.jour_liturgique_nom,
-    evangile: lectures.splice(evangile_index, 1)[0],
+    evangile: formatReading(lectures.splice(evangile_index, 1)[0]),
     additionnelles: lectures.filter(function(lecture){
       return lecture.type !== "evangile" // filter out second evangile (lecture brève)
-    }).reduce(ensureUniqueLecturesReducer, []),
-    format_reading: function(html) {
-      return html.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '').replace(/\<\/em\>([A-Z])/gi, '</em> $1')
-    }
+    }).reduce(ensureUniqueLecturesReducer, []).map(function(lecture) {
+      lecture.contenu = formatReading(lecture)
+      return lecture
+    })
   }, {}, function (err, str) {
     fs.writeFileSync(dist + 'index.html', str)
   })

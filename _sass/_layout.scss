@@ -243,6 +243,13 @@
             font-size: 18px;
         }
     }
+    
+    .indicateur-interlocuteur {
+      font-weight: bold;
+      font-family: $heading-font-family;
+      
+      .js.liturgical-color-rouge & { color: rgb(151, 0, 0); }
+    }
 }
 
 @media print {

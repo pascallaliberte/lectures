@@ -103,7 +103,7 @@
               <% } %>
             </h2>
             <h3><%= lecture.ref %></h3>
-            <%- format_reading(lecture.contenu) %>
+            <%- lecture.contenu %>
           <% } %>
           
         <% }) %>
@@ -112,7 +112,7 @@
       <div class="post-readings">
         <h2>Évangile</h2>
         <h3><%= evangile.ref %></h3>
-        <%- format_reading(evangile.contenu) %>
+        <%- evangile.contenu %>
       </div>
     </article>
     
