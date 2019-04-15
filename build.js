@@ -39,6 +39,8 @@ function ensureUniqueLecturesReducer(set, currentLecture) {
 function getAllLecturesFromAllMesses(set, currentMesse) {
   if (!currentMesse.lectures || currentMesse.lectures.length == 0) { return set; }
   
+  if (currentMesse.nom.indexOf("PASCALE") !== -1) { return set; }
+  
   currentMesse.lectures.forEach(function(lecture) {
     set.push(lecture);
   });
@@ -62,7 +64,7 @@ if (process.env.DATE) {
 }
 
 function formatReading(lecture) {
-  lecture.contenu = lecture.contenu.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '').replace(/\<\/em\>([A-Z])/gi, '</em> $1');
+  lecture.contenu = lecture.contenu.replace(/<br\s*\/>\s*/gi, ' ').replace(/\>\s*/gi, '>').replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '').replace(/\<\/em\>([A-Z])/gi, '</em> $1').replace('<p>OU AU CHOIX</p>', '').replace(/<p><em>Au lieu de cet Évangile.*<\/p>/, '');
   
   if (lecture.type === 'evangile' && lecture.contenu.indexOf('X = Jésus') !== -1) {
     lecture.contenu = lecture.contenu
