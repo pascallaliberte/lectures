@@ -89,6 +89,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     liturgicalColor: json.informations.couleur,
     isTodaySunday: isTodaySunday,
     isTodaySaturday: isTodaySaturday,
+    aelf_url: 'https://www.aelf.org/' + api_date + '/romain/messe',
     date: date,
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
     annee: json.informations.annee,
