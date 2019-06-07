@@ -94,6 +94,7 @@
 .page-content {
     position: relative;
     padding: $spacing-unit 0;
+    min-height: 100vh;
 }
 
 .page-heading {
