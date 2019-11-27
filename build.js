@@ -3,7 +3,7 @@ var rimraf = require('rimraf')
 var ejs = require('ejs')
 global.fetch = require('node-fetch');
 
-var time = require('time')
+var moment = require('moment-timezone')
 var timezone = 'America/Toronto'
 
 var dist = "dist/"
@@ -18,11 +18,11 @@ fs.copySync('fonts/', dist + 'fonts/')
 
 // build the page
 function getNextSundayFrom(today) {
-  d = new time.Date(today);
-  d = d.setTimezone(timezone)
-  var day = d.getDay(),
-      diff = d.getDate() - day + 7; // next Sunday
-  return new time.Date(d.setDate(diff)).setTimezone(timezone);
+  d = moment(today)
+  d = d.tz(timezone)
+  var day = d.day(),
+      diff = d.day() - day + 7; // next Sunday
+  return d.day(diff).tz(timezone);
 }
 
 function ensureUniqueLecturesReducer(set, currentLecture) {
@@ -48,15 +48,14 @@ function getAllLecturesFromAllMesses(set, currentMesse) {
   return set;
 }
 
-var today = new time.Date()
-today = today.setTimezone(timezone)
+var today = moment()
+today = today.tz(timezone)
 
-var isTodaySunday = today.getDay() === 0;
-var isTodaySaturday = today.getDay() === 6;
+var isTodaySunday = today.day() === 0;
+var isTodaySaturday = today.day() === 6;
 var date = isTodaySunday? today: getNextSundayFrom(today)
-var api_date = date
-api_date.setHours(api_date.getHours() - api_date.getTimezoneOffset() / 60);
-api_date = api_date.toJSON().substring(0, 10);
+date.hours(date.hours() + date.utcOffset() / 60);
+var api_date = date.format("YYYY-MM-DD")
 
 if (process.env.DATE) {
   console.log(`>> Using date ${process.env.DATE}`);
@@ -91,7 +90,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     isTodaySaturday: isTodaySaturday,
     aelf_url: 'https://www.aelf.org/' + api_date + '/romain/messe',
     date: date,
-    date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.getMonth()],
+    date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.month()],
     annee: json.informations.annee,
     jour_liturgique_nom: json.informations.jour_liturgique_nom,
     evangile: formatReading(lectures.splice(evangile_index, 1)[0]),
@@ -102,6 +101,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
       return lecture;
     })
   }, {}, function (err, str) {
+    console.log(err)
     fs.writeFileSync(dist + 'index.html', str)
   })
 });
