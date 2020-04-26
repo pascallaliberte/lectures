@@ -198,8 +198,8 @@
 }
 
 #post-readings-additional-toggle {
-  position: absolute;
-  top: 1.5em;
+  position: relative;
+  top: 2em;
   font-size: $small-font-size;
   @include media-query($on-mobile) {
     font-size: $mobile-small-font-size;
