@@ -115,7 +115,8 @@ import 'jquery.smooth-scroll'
     });
 
     enable_additional_readings();
-    enable_sroll_trick();
-    
+    if ($('aside.about').length) {
+      enable_sroll_trick();
+    }
   });
 })(jQuery);

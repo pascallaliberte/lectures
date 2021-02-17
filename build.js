@@ -15,6 +15,7 @@ rimraf.sync(dist)
 // copy the public directories
 fs.copySync('public/', dist)
 fs.copySync('fonts/', dist + 'fonts/')
+fs.mkdirSync(dist + "quotidienne/");
 
 // build the page
 function getNextSundayFrom(today) {
@@ -53,13 +54,14 @@ today = today.tz(timezone)
 
 var isTodaySunday = today.day() === 0;
 var isTodaySaturday = today.day() === 6;
-var date = isTodaySunday? today: getNextSundayFrom(today)
-date.hours(date.hours() + date.utcOffset() / 60);
-var api_date = date.format("YYYY-MM-DD")
+var sunday = isTodaySunday? today: getNextSundayFrom(today)
+sunday.hours(sunday.hours() + sunday.utcOffset() / 60);
+var api_date_sunday = sunday.format("YYYY-MM-DD")
+var api_date_today = today.format("YYYY-MM-DD")
 
 if (process.env.DATE) {
   console.log(`>> Using date ${process.env.DATE}`);
-  api_date = process.env.DATE;
+  api_date_sunday = process.env.DATE;
 }
 
 function formatReading(lecture) {
@@ -78,7 +80,7 @@ function formatReading(lecture) {
   return lecture;
 }
 
-fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
+fetch('https://api.aelf.org/v1/messes/' + api_date_sunday + '/canada')
 .then(function(r) {
   return r.json();
 })
@@ -92,9 +94,9 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
     liturgicalColor: json.informations.couleur,
     isTodaySunday: isTodaySunday,
     isTodaySaturday: isTodaySaturday,
-    aelf_url: 'https://www.aelf.org/' + api_date + '/romain/messe',
-    date: date,
-    date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][date.month()],
+    aelf_url: 'https://www.aelf.org/' + api_date_sunday + '/romain/messe',
+    date: sunday,
+    date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][sunday.month()],
     annee: json.informations.annee,
     jour_liturgique_nom: json.informations.jour_liturgique_nom,
     evangile: formatReading(lectures.splice(evangile_index, 1)[0]),
@@ -107,6 +109,27 @@ fetch('https://api.aelf.org/v1/messes/' + api_date + '/canada')
   }, {}, function (err, str) {
     console.log(err)
     fs.writeFileSync(dist + 'index.html', str)
+  })
+});
+
+fetch('https://api.aelf.org/v1/messes/' + api_date_today + '/canada')
+.then(function(r) {
+  return r.json();
+})
+.then(function(json) {
+  var lectures = json.messes.reduce(getAllLecturesFromAllMesses, []);
+  
+  var lecture = lectures[Math.floor(Math.random() * lectures.length)]; // random
+  
+  ejs.renderFile(views + 'quotidienne.ejs', { 
+    aelf_url: 'https://www.aelf.org/' + api_date_today + '/romain/messe',
+    date: today,
+    date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][today.month()],
+    annee: json.informations.annee,
+    lecture: formatReading(lecture)
+  }, {}, function (err, str) {
+    console.log(err)
+    fs.writeFileSync(dist + '/quotidienne/index.html', str)
   })
 });
 

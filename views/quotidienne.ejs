@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Lecture du jour</title>
+    <meta name="description" content="">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad@2x.png">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="https://lectures.page/quotidienne/">
+    
+    <meta property="og:title" content="Lecture du jour tirée du missel canadien, choisie au hazard, mise en page pour la lecture personnelle ou de groupe." />
+    <meta property="og:image" content="https://api.apiflash.com/v1/urltoimage?access_key=c5c2ce4e413f42daad021dd0f001bf3c&format=jpeg&height=525&scale_factor=2&url=https%3A%2F%2Flectures.page%2Fquotidienne%2F&width=1000" />
+    <meta property="og:image:width" content="1000" />
+    <meta property="og:image:height" content="525" />
+</head>
+
+
+  <body>
+    
+    <div class="page-content" id="lectures">
+      <div class="wrapper">
+        
+<div class="home">
+  
+  <div class="post">
+    <header class="post-header">
+      <div class="post-meta">
+        <div class="post-date post-date-upcoming">
+          <span class="post-date-weekday">
+            <span class="post-date-weekday-dimanche">
+              Aujourd'hui
+            </span>
+            </span><span class="post-date-day-month-year"><span class="post-date-separator">,</span>
+            <span class="post-date-day-of-month">
+              <%= date.date() %>
+            </span>
+
+            <span class="post-date-month">
+              <%= date_month_abbr %>
+            </span>
+
+            <span class="post-date-year">
+              <%= date.year() %>
+            </span>
+
+          </span><!-- /.post-date-day-month-year -->
+        </div>
+      </div>
+      
+    </header>
+
+    <article class="post-content">
+      
+      <div class="intro-lecture-quotidienne">
+        <em>Une lecture pigée au hasard du missel de la journée, tirée des textes de l'<a href="<%= aelf_url %>">AELF</a>.</em>
+      </div>
+      
+      <div class="post-readings">
+        <% if (lecture.type === 'psaume') { %>
+          <h2>P<span style="margin-left: 0.5px; margin-right: -0.5px;">s</span>aume</h2>
+          <h3><%= lecture.ref %></h3>
+          
+          <%- lecture.refrain_psalmique.replace(/p>/, 'p>R/ ') %>
+          <%- lecture.contenu %>
+        <% } else { %>
+          <h2>
+            <% if (lecture.type === 'lecture_1') { %>
+              1<sup>ère</sup> lecture
+            <% } %>
+            <% if (lecture.type === 'lecture_2') { %>
+              2<sup>ème</sup> lecture
+            <% } %>
+            <% if (lecture.type === 'lecture_3') { %>
+              3<sup>ème</sup> lecture
+            <% } %>
+            <% if (lecture.type === 'cantique') { %>
+              Cantique
+            <% } %>
+            <% if (lecture.type === 'sequence') { %>
+              Séquence
+            <% } %>
+            <% if (lecture.type === 'entree_messianique') { %>
+              Entrée messianique
+            <% } %>
+            <% if (lecture.type === 'evangile') { %>
+              Évangile
+            <% } %>
+          </h2>
+          <h3><%= lecture.ref %></h3>
+          <%- lecture.contenu %>
+        <% } %>
+      </div>
+    </article>
+
+  </div>
+  
+</div>
+
+
+      </div>
+      
+      <nav class="site-nav">
+        Retourner aux 
+        <a href="/">lectures du dimanche prochain</a>
+      </nav>
+      
+    </div>
+
+  <script src="/js/main.js"></script>
+
+  </body>
+
+</html>
+
