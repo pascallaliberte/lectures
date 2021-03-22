@@ -1,13 +1,15 @@
-var fs = require('fs-extra')
-var rimraf = require('rimraf')
-var ejs = require('ejs')
-global.fetch = require('node-fetch');
+import fs from 'fs-extra'
+import rimraf from 'rimraf'
+import ejs from 'ejs'
+import fetch from 'node-fetch';
 
-var moment = require('moment-timezone')
+import moment from 'moment-timezone'
 var timezone = 'America/Toronto'
 
 var dist = "dist/"
 var views = "views/"
+
+import { renderExtraPage } from './src/render_extra_pages.mjs'
 
 // delete the destination dir
 rimraf.sync(dist)
@@ -17,9 +19,29 @@ fs.copySync('public/', dist)
 fs.copySync('fonts/', dist + 'fonts/')
 fs.mkdirSync(dist + "quotidienne/");
 
+var extras = {
+  JEUDISAINT: {
+    slug: 'jeudi-saint',
+    title: "Jeudi Saint",
+    intro: "Lectures de la messe du Jeudi Saint",
+    messe_index: 1
+  },
+  VENDREDISAINT: {
+    slug: 'vendredi-saint',
+    title: "Vendredi Saint",
+    intro: "Lectures de la messe du Vendredi Saint"
+  },
+  VEILLEEPASCALE: {
+    slug: 'veillee-pascale',
+    title: "Veillée Pascale",
+    intro: "Lectures de la messe de la Veillée Pascale",
+    messe_index: 0
+  }
+}
+
 // build the page
 function getNextSundayFrom(today) {
-  d = moment(today)
+  var d = moment(today)
   d = d.tz(timezone)
   var day = d.day(),
       diff = d.day() - day + 7; // next Sunday
@@ -40,7 +62,7 @@ function ensureUniqueLecturesReducer(set, currentLecture) {
 function getAllLecturesFromAllMesses(set, currentMesse) {
   if (!currentMesse.lectures || currentMesse.lectures.length == 0) { return set; }
   
-  if (currentMesse.nom.indexOf("PASCALE") !== -1) { return set; }
+  if (currentMesse.nom.match(/pascale/i) !== null) { return set; }
   
   currentMesse.lectures.forEach(function(lecture) {
     set.push(lecture);
@@ -107,7 +129,9 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_sunday + '/canada')
       return lecture;
     })
   }, {}, function (err, str) {
-    console.log(err)
+    if (err) {
+      console.log('error:', err)
+    }
     fs.writeFileSync(dist + 'index.html', str)
   })
 });
@@ -132,6 +156,10 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_today + '/canada')
     fs.writeFileSync(dist + '/quotidienne/index.html', str)
   })
 });
+
+for (var extra in extras) {
+  await renderExtraPage(extras, extra, dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
+}
 
 var console_green = "\x1b[32m"
 console.log(console_green, "Published to " + dist)

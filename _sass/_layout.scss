@@ -36,7 +36,7 @@
     font-size: 20px;
 }
 
-.intro-lecture-quotidienne {
+.intro-lecture-quotidienne, .intro-lecture-extra {
   font-size: $small-font-size;
   @include media-query($on-mobile) {
     font-size: $mobile-small-font-size;

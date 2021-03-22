@@ -7,10 +7,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "node build.js && yarn build-css && yarn build-js",
+    "build": "dotenv node build.mjs && yarn build-css && yarn build-js",
     "build-css": "node-sass _sass/main.scss dist/css/main.css",
     "build-js": "webpack",
-    "watch": "yarn build && node watch.js"
+    "watch": "yarn build && node watch.mjs"
   },
   "dependencies": {
     "ejs": "^2.6.1",
@@ -26,6 +26,7 @@
     "rimraf": "^2.6.2"
   },
   "devDependencies": {
+    "dotenv-cli": "^4.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   }
