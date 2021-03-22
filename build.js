@@ -40,7 +40,7 @@ function ensureUniqueLecturesReducer(set, currentLecture) {
 function getAllLecturesFromAllMesses(set, currentMesse) {
   if (!currentMesse.lectures || currentMesse.lectures.length == 0) { return set; }
   
-  if (currentMesse.nom.indexOf("PASCALE") !== -1) { return set; }
+  if (currentMesse.nom.match(/pascale/i) !== null) { return set; }
   
   currentMesse.lectures.forEach(function(lecture) {
     set.push(lecture);
