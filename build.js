@@ -94,7 +94,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_sunday + '/canada')
     liturgicalColor: json.informations.couleur,
     isTodaySunday: isTodaySunday,
     isTodaySaturday: isTodaySaturday,
-    aelf_url: 'https://www.aelf.org/' + api_date_sunday + '/romain/messe',
+    aelf_url: 'https://www.aelf.org/' + api_date_sunday + '/canada/messe',
     date: sunday,
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][sunday.month()],
     annee: json.informations.annee,
@@ -122,7 +122,7 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_today + '/canada')
   var lecture = lectures[Math.floor(Math.random() * lectures.length)]; // random
   
   ejs.renderFile(views + 'quotidienne.ejs', { 
-    aelf_url: 'https://www.aelf.org/' + api_date_today + '/romain/messe',
+    aelf_url: 'https://www.aelf.org/' + api_date_today + '/canada/messe',
     date: today,
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][today.month()],
     annee: json.informations.annee,
