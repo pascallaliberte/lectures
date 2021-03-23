@@ -59,6 +59,11 @@ function ensureUniqueLecturesReducer(set, currentLecture) {
   return set;
 }
 
+function collectAllLectures(lectures_to_display, currentLecture) {
+  lectures_to_display.push(currentLecture)
+  return lectures_to_display
+}
+
 function getAllLecturesFromAllMesses(set, currentMesse) {
   if (!currentMesse.lectures || currentMesse.lectures.length == 0) { return set; }
   
@@ -157,9 +162,15 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_today + '/canada')
   })
 });
 
-for (var extra in extras) {
-  await renderExtraPage(extras, extra, dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
-}
+setTimeout(() => {
+  renderExtraPage(extras, 'JEUDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
+}, 1000)
+setTimeout(() => {
+  renderExtraPage(extras, 'VENDREDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
+}, 2000)
+setTimeout(() => {
+  renderExtraPage(extras, 'VEILLEEPASCALE', dist, views, collectAllLectures, formatReading, getAllLecturesFromAllMesses)
+}, 3000)
 
 var console_green = "\x1b[32m"
 console.log(console_green, "Published to " + dist)

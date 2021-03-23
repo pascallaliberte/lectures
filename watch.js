@@ -1,9 +1,9 @@
 // server.js
 // load the things we need
-import express from 'express';
+var express = require('express');
 var app = express();
-import path from 'path';
-import sassMiddleware from 'node-sass-middleware'
+var path = require('path');
+var sassMiddleware =  require('node-sass-middleware')
 
 app.use(sassMiddleware({
     src: path.join(__dirname, '_sass'),

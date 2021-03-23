@@ -81,11 +81,26 @@
               <% if (lecture.type === 'lecture_3') { %>
                 3<sup>ème</sup> lecture
               <% } %>
+              <% if (lecture.type === 'lecture_4') { %>
+                4<sup>ème</sup> lecture
+              <% } %>
+              <% if (lecture.type === 'lecture_5') { %>
+                5<sup>ème</sup> lecture
+              <% } %>
+              <% if (lecture.type === 'lecture_6') { %>
+                6<sup>ème</sup> lecture
+              <% } %>
+              <% if (lecture.type === 'lecture_7') { %>
+                7<sup>ème</sup> lecture
+              <% } %>
               <% if (lecture.type === 'cantique') { %>
                 Cantique
               <% } %>
               <% if (lecture.type === 'sequence') { %>
                 Séquence
+              <% } %>
+              <% if (lecture.type === 'epitre') { %>
+                Épitre
               <% } %>
               <% if (lecture.type === 'entree_messianique') { %>
                 Entrée messianique
@@ -94,6 +109,7 @@
                 Évangile
               <% } %>
             </h2>
+            (<%= lecture.type %>)
             <h3><%= lecture.ref %></h3>
             <%- lecture.contenu %>
           <% } %>
