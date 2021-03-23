@@ -48,20 +48,27 @@ function getNextSundayFrom(today) {
   return d.day(diff).tz(timezone);
 }
 
-function ensureUniqueLecturesReducer(set, currentLecture) {
-  if (set.findIndex(function(lecture) {
+function ensureUniqueLecturesReducer(accumulated, currentLecture) {
+  if (accumulated.findIndex(function(lecture) {
     return lecture.type === currentLecture.type
   }) !== -1) {
-    return set;
+    return accumulated;
   }
   
-  set.push(currentLecture);
-  return set;
+  accumulated.push(currentLecture);
+  return accumulated;
 }
 
-function collectAllLectures(lectures_to_display, currentLecture) {
-  lectures_to_display.push(currentLecture)
-  return lectures_to_display
+function ensureNoConsecutiveLecturesOfSameType(accumulated, currentLecture) {
+  if (accumulated.length > 0) {
+    var latest = accumulated[accumulated.length - 1]
+    if (latest.type === currentLecture.type) {
+      return accumulated // skip currentLecture
+    }
+  }
+  
+  accumulated.push(currentLecture);
+  return accumulated
 }
 
 function getAllLecturesFromAllMesses(set, currentMesse) {
@@ -96,7 +103,20 @@ function formatReading(lecture) {
     lecture.contenu = lecture.contenu.replace(/<br\s*\/>\s*/gi, ' ')
   }
   
-  lecture.contenu = lecture.contenu.replace(/\>\s*/gi, '>').replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace(' ou lecture brève','').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '').replace('<p>OU BIEN</p>', '').replace(/\<\/em\>([A-Z])/gi, '</em> $1').replace('<p>OU AU CHOIX</p>', '').replace(/<p><em>Au lieu de cet Évangile.*<\/p>/, '');
+  lecture.contenu = lecture.contenu
+  .replace(/\>\s*/gi, '>')
+  .replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2')
+  .replace(/(«)\s/gi, '$1&nbsp;')
+  .replace(/(\s)+/gi, ' ')
+  .replace(' ou lecture brève','')
+  .replace('<p>– Acclamons la Parole de Dieu.</p>', '')
+  .replace('<p>– Parole du Seigneur.</p>', '')
+  .replace('<p>OU LECTURE BREVE</p>', '')
+  .replace('<p>OU BIEN</p>', '')
+  .replace('<p><em>OU BIEN</em></p>', '')
+  .replace(/\<\/em\>([A-Z])/gi, '</em> $1')
+  .replace('<p>OU AU CHOIX</p>', '')
+  .replace(/<p><em>Au lieu de cet Évangile.*<\/p>/, '');
   
   if (lecture.type === 'evangile' && lecture.contenu.indexOf('X = Jésus') !== -1) {
     lecture.contenu = lecture.contenu
@@ -169,7 +189,7 @@ setTimeout(() => {
   renderExtraPage(extras, 'VENDREDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
 }, 2000)
 setTimeout(() => {
-  renderExtraPage(extras, 'VEILLEEPASCALE', dist, views, collectAllLectures, formatReading, getAllLecturesFromAllMesses)
+  renderExtraPage(extras, 'VEILLEEPASCALE', dist, views, ensureNoConsecutiveLecturesOfSameType, formatReading, getAllLecturesFromAllMesses)
 }, 3000)
 
 var console_green = "\x1b[32m"
