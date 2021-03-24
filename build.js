@@ -1,15 +1,15 @@
-import fs from 'fs-extra'
-import rimraf from 'rimraf'
-import ejs from 'ejs'
-import fetch from 'node-fetch';
+const fs = require('fs-extra')
+const rimraf = require('rimraf')
+const ejs = require('ejs')
+const fetch = require('node-fetch')
 
-import moment from 'moment-timezone'
+const moment = require('moment-timezone')
 var timezone = 'America/Toronto'
 
 var dist = "dist/"
 var views = "views/"
 
-import { renderExtraPage } from './src/render_extra_pages.mjs'
+const renderExtraPage = require('./src/render_extra_pages.js')
 
 // delete the destination dir
 rimraf.sync(dist)
