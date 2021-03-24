@@ -1,10 +1,10 @@
-import fs from 'fs-extra'
-import ejs from 'ejs'
-import fetch from 'node-fetch';
+const fs = require('fs-extra')
+const ejs = require('ejs')
+const fetch = require('node-fetch')
 
-import moment from 'moment-timezone'
+const moment = require('moment-timezone')
 
-export function renderExtraPage(extras, extra, dist, views, lecturesReducer, formatReading, getAllLecturesFromAllMesses) {
+module.exports = function(extras, extra, dist, views, lecturesReducer, formatReading, getAllLecturesFromAllMesses) {
   if (process.env[extra] === undefined ) { return }
   
   var date_string = process.env[extra]
