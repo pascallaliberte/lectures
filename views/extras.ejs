@@ -6,35 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Lectures</title>
+    <title><%= title %> - Lectures.page</title>
     <meta name="description" content="">
 
     <link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad@2x.png">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://lectures.page/">
+    <link rel="canonical" href="https://lectures.page/<%= slug %>/">
     
-    <meta property="og:title" content="Lectures du dimanche prochain, mises en page pour la lecture personnelle ou de groupe." />
-    <meta property="og:image" content="https://api.apiflash.com/v1/urltoimage?access_key=c5c2ce4e413f42daad021dd0f001bf3c&format=jpeg&height=525&scale_factor=2&url=https%3A%2F%2Flectures.page&width=1000" />
+    <meta property="og:title" content="<%= intro %>" />
+    <meta property="og:image" content="https://api.apiflash.com/v1/urltoimage?access_key=c5c2ce4e413f42daad021dd0f001bf3c&format=jpeg&height=525&scale_factor=2&url=https%3A%2F%2Flectures.page%2F<%= slug %>%2F&width=1000" />
     <meta property="og:image:width" content="1000" />
     <meta property="og:image:height" content="525" />
 </head>
 
 
-  <body class="liturgical-color-<%= liturgicalColor %>">
-    
-    <aside class="about">
-      <div class="wrapper">
-        <div class="about-details">
-          <p class="about-description">Lectures du missel romain du dimanche prochain, mises en page pour la lecture personnelle ou de groupe.</p>
-          <p class="about-signature">
-            Textes de l'<a href="<%= aelf_url %>">AELF</a>.
-            <span class="about-signature-name">Conception de <a href="https://pascallaliberte.me" rel="author">Pascal Laliberté</a>.</span>
-          </p>
-        </div>
-      </div>
-    </aside>
+  <body>
     
     <div class="page-content" id="lectures">
       <div class="wrapper">
@@ -46,14 +34,8 @@
       <div class="post-meta">
         <div class="post-date post-date-upcoming">
           <span class="post-date-weekday">
-            <span class="post-date-weekday-dimanche" data-text-if-upcoming="Dimanche prochain">
-              <% if(isTodaySunday) { %>
-                <%= "Aujourd'hui" %>
-              <% } else if (isTodaySaturday) { %>
-                Demain
-              <% } else { %>
-                Dimanche prochain  
-              <% } %>
+            <span class="post-date-weekday-dimanche">
+              Aujourd'hui
             </span>
             </span><span class="post-date-day-month-year"><span class="post-date-separator">,</span>
             <span class="post-date-day-of-month">
@@ -69,21 +51,19 @@
             </span>
 
           </span><!-- /.post-date-day-month-year -->
-          <div class="post-date-more-info-wrapper">
-            <div class="post-date-more-info">
-              <span class="jour-liturgique-nom"><%= jour_liturgique_nom %></span>, 
-              <span class="annee">Année <%= annee %></span>
-            </div>
-          </div>
         </div>
       </div>
       
     </header>
 
     <article class="post-content">
-      <div id="post-readings-additional-toggle" aria-expanded="false"><a id="post-readings-additional-toggle-link" href="#" data-change-to="Afficher seulement l'Évangile">Afficher les autres textes&hellip;</a></div>
-      <div class="post-readings post-readings-additional">
-        <% additionnelles.forEach(function(lecture) { %>
+      
+      <div class="intro-lecture-extra">
+        <em><%= intro %> Tirée des textes de l'<a href="<%= aelf_url %>">AELF</a>.</em>
+      </div>
+      
+      <div class="post-readings">
+        <% lectures.forEach(function(lecture) { %>
           <% if (lecture.type === 'psaume') { %>
             <h2>P<span style="margin-left: 0.5px; margin-right: -0.5px;">s</span>aume</h2>
             <h3><%= lecture.ref %></h3>
@@ -101,31 +81,40 @@
               <% if (lecture.type === 'lecture_3') { %>
                 3<sup>ème</sup> lecture
               <% } %>
+              <% if (lecture.type === 'lecture_4') { %>
+                4<sup>ème</sup> lecture
+              <% } %>
+              <% if (lecture.type === 'lecture_5') { %>
+                5<sup>ème</sup> lecture
+              <% } %>
+              <% if (lecture.type === 'lecture_6') { %>
+                6<sup>ème</sup> lecture
+              <% } %>
+              <% if (lecture.type === 'lecture_7') { %>
+                7<sup>ème</sup> lecture
+              <% } %>
               <% if (lecture.type === 'cantique') { %>
                 Cantique
               <% } %>
               <% if (lecture.type === 'sequence') { %>
                 Séquence
               <% } %>
+              <% if (lecture.type === 'epitre') { %>
+                Épitre
+              <% } %>
               <% if (lecture.type === 'entree_messianique') { %>
                 Entrée messianique
+              <% } %>
+              <% if (lecture.type === 'evangile') { %>
+                Évangile
               <% } %>
             </h2>
             <h3><%= lecture.ref %></h3>
             <%- lecture.contenu %>
           <% } %>
-          
         <% }) %>
       </div>
-      
-      <div class="post-readings">
-        <h2>Évangile</h2>
-        <h3><%= evangile.ref %></h3>
-        <%- evangile.contenu %>
-      </div>
     </article>
-    
-    <a class="to-top" href="#lectures">Revenir aux lectures</a>
 
   </div>
   
@@ -135,14 +124,15 @@
       </div>
       
       <nav class="site-nav">
-        Alternative:
-        <a href="/quotidienne/">lecture quotidienne pigée au hasard</a>
+        Retourner aux 
+        <a href="/">lectures du dimanche prochain habituelle</a>
         <br />
         Lectures de la Semaine Sainte:
         <a href="/jeudi-saint/">Jeudi Saint</a>, 
         <a href="/vendredi-saint/">Vendredi Saint</a>, 
         <a href="/veillee-pascale/">Veillée Pascale</a>
       </nav>
+      
     </div>
 
   <script src="/js/main.js"></script>

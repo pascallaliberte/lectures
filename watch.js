@@ -3,7 +3,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var sassMiddleware = require('node-sass-middleware')
+var sassMiddleware =  require('node-sass-middleware')
 
 app.use(sassMiddleware({
     src: path.join(__dirname, '_sass'),

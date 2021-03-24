@@ -1,13 +1,15 @@
-var fs = require('fs-extra')
-var rimraf = require('rimraf')
-var ejs = require('ejs')
-global.fetch = require('node-fetch');
+import fs from 'fs-extra'
+import rimraf from 'rimraf'
+import ejs from 'ejs'
+import fetch from 'node-fetch';
 
-var moment = require('moment-timezone')
+import moment from 'moment-timezone'
 var timezone = 'America/Toronto'
 
 var dist = "dist/"
 var views = "views/"
+
+import { renderExtraPage } from './src/render_extra_pages.mjs'
 
 // delete the destination dir
 rimraf.sync(dist)
@@ -17,24 +19,56 @@ fs.copySync('public/', dist)
 fs.copySync('fonts/', dist + 'fonts/')
 fs.mkdirSync(dist + "quotidienne/");
 
+var extras = {
+  JEUDISAINT: {
+    slug: 'jeudi-saint',
+    title: "Jeudi Saint",
+    intro: "Lectures de la messe du Jeudi Saint",
+    messe_index: 1
+  },
+  VENDREDISAINT: {
+    slug: 'vendredi-saint',
+    title: "Vendredi Saint",
+    intro: "Lectures de la messe du Vendredi Saint"
+  },
+  VEILLEEPASCALE: {
+    slug: 'veillee-pascale',
+    title: "Veillée Pascale",
+    intro: "Lectures de la messe de la Veillée Pascale",
+    messe_index: 0
+  }
+}
+
 // build the page
 function getNextSundayFrom(today) {
-  d = moment(today)
+  var d = moment(today)
   d = d.tz(timezone)
   var day = d.day(),
       diff = d.day() - day + 7; // next Sunday
   return d.day(diff).tz(timezone);
 }
 
-function ensureUniqueLecturesReducer(set, currentLecture) {
-  if (set.findIndex(function(lecture) {
+function ensureUniqueLecturesReducer(accumulated, currentLecture) {
+  if (accumulated.findIndex(function(lecture) {
     return lecture.type === currentLecture.type
   }) !== -1) {
-    return set;
+    return accumulated;
   }
   
-  set.push(currentLecture);
-  return set;
+  accumulated.push(currentLecture);
+  return accumulated;
+}
+
+function ensureNoConsecutiveLecturesOfSameType(accumulated, currentLecture) {
+  if (accumulated.length > 0) {
+    var latest = accumulated[accumulated.length - 1]
+    if (latest.type === currentLecture.type) {
+      return accumulated // skip currentLecture
+    }
+  }
+  
+  accumulated.push(currentLecture);
+  return accumulated
 }
 
 function getAllLecturesFromAllMesses(set, currentMesse) {
@@ -69,7 +103,20 @@ function formatReading(lecture) {
     lecture.contenu = lecture.contenu.replace(/<br\s*\/>\s*/gi, ' ')
   }
   
-  lecture.contenu = lecture.contenu.replace(/\>\s*/gi, '>').replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2').replace(/(«)\s/gi, '$1&nbsp;').replace(/(\s)+/gi, ' ').replace(' ou lecture brève','').replace('<p>– Acclamons la Parole de Dieu.</p>', '').replace('<p>– Parole du Seigneur.</p>', '').replace('<p>OU LECTURE BREVE</p>', '').replace('<p>OU BIEN</p>', '').replace(/\<\/em\>([A-Z])/gi, '</em> $1').replace('<p>OU AU CHOIX</p>', '').replace(/<p><em>Au lieu de cet Évangile.*<\/p>/, '');
+  lecture.contenu = lecture.contenu
+    .replace(/\>\s*/gi, '>')
+    .replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2')
+    .replace(/(«)\s/gi, '$1&nbsp;')
+    .replace(/(\s)+/gi, ' ')
+    .replace(' ou lecture brève','')
+    .replace('<p>– Acclamons la Parole de Dieu.</p>', '')
+    .replace('<p>– Parole du Seigneur.</p>', '')
+    .replace('<p>OU LECTURE BREVE</p>', '')
+    .replace('<p>OU BIEN</p>', '')
+    .replace('<p><em>OU BIEN</em></p>', '')
+    .replace(/\<\/em\>([A-Z])/gi, '</em> $1')
+    .replace('<p>OU AU CHOIX</p>', '')
+    .replace(/<p><em>Au lieu de cet Évangile.*<\/p>/, '');
   
   if (lecture.type === 'evangile' && lecture.contenu.indexOf('X = Jésus') !== -1) {
     lecture.contenu = lecture.contenu
@@ -107,7 +154,9 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_sunday + '/canada')
       return lecture;
     })
   }, {}, function (err, str) {
-    console.log(err)
+    if (err) {
+      console.log('error:', err)
+    }
     fs.writeFileSync(dist + 'index.html', str)
   })
 });
@@ -132,6 +181,16 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_today + '/canada')
     fs.writeFileSync(dist + '/quotidienne/index.html', str)
   })
 });
+
+setTimeout(() => {
+  renderExtraPage(extras, 'JEUDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
+}, 1000)
+setTimeout(() => {
+  renderExtraPage(extras, 'VENDREDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
+}, 2000)
+setTimeout(() => {
+  renderExtraPage(extras, 'VEILLEEPASCALE', dist, views, ensureNoConsecutiveLecturesOfSameType, formatReading, getAllLecturesFromAllMesses)
+}, 3000)
 
 var console_green = "\x1b[32m"
 console.log(console_green, "Published to " + dist)
