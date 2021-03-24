@@ -104,19 +104,19 @@ function formatReading(lecture) {
   }
   
   lecture.contenu = lecture.contenu
-  .replace(/\>\s*/gi, '>')
-  .replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2')
-  .replace(/(«)\s/gi, '$1&nbsp;')
-  .replace(/(\s)+/gi, ' ')
-  .replace(' ou lecture brève','')
-  .replace('<p>– Acclamons la Parole de Dieu.</p>', '')
-  .replace('<p>– Parole du Seigneur.</p>', '')
-  .replace('<p>OU LECTURE BREVE</p>', '')
-  .replace('<p>OU BIEN</p>', '')
-  .replace('<p><em>OU BIEN</em></p>', '')
-  .replace(/\<\/em\>([A-Z])/gi, '</em> $1')
-  .replace('<p>OU AU CHOIX</p>', '')
-  .replace(/<p><em>Au lieu de cet Évangile.*<\/p>/, '');
+    .replace(/\>\s*/gi, '>')
+    .replace(/(\>)?\s?([:;?!»])/gi, '$1&nbsp;$2')
+    .replace(/(«)\s/gi, '$1&nbsp;')
+    .replace(/(\s)+/gi, ' ')
+    .replace(' ou lecture brève','')
+    .replace('<p>– Acclamons la Parole de Dieu.</p>', '')
+    .replace('<p>– Parole du Seigneur.</p>', '')
+    .replace('<p>OU LECTURE BREVE</p>', '')
+    .replace('<p>OU BIEN</p>', '')
+    .replace('<p><em>OU BIEN</em></p>', '')
+    .replace(/\<\/em\>([A-Z])/gi, '</em> $1')
+    .replace('<p>OU AU CHOIX</p>', '')
+    .replace(/<p><em>Au lieu de cet Évangile.*<\/p>/, '');
   
   if (lecture.type === 'evangile' && lecture.contenu.indexOf('X = Jésus') !== -1) {
     lecture.contenu = lecture.contenu
