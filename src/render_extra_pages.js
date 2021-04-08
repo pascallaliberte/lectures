@@ -40,7 +40,8 @@ module.exports = function(extras, extra, dist, views, lecturesReducer, formatRea
       lectures: lectures.reduce(lecturesReducer, []).map(function(lecture) {
         lecture = formatReading(lecture);
         return lecture;
-      })
+      }),
+      has_extra_pages: true
     }, {}, function (err, str) {
       if (err) {
         console.log('error', err)

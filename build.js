@@ -39,6 +39,11 @@ var extras = {
   }
 }
 
+var has_extra_pages = Object.keys(extras).reduce((has_extra_pages, key) => {
+  if (!has_extra_pages) { return false }
+  return process.env[key] !== undefined
+}, true)
+
 // build the page
 function getNextSundayFrom(today) {
   var d = moment(today)
@@ -152,7 +157,8 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_sunday + '/canada')
     }).reduce(ensureUniqueLecturesReducer, []).map(function(lecture) {
       lecture = formatReading(lecture);
       return lecture;
-    })
+    }),
+    has_extra_pages: has_extra_pages
   }, {}, function (err, str) {
     if (err) {
       console.log('error:', err)
@@ -175,22 +181,25 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_today + '/canada')
     date: today,
     date_month_abbr: ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juill.', 'août', 'sept.', 'oct', 'nov', 'déc.'][today.month()],
     annee: json.informations.annee,
-    lecture: formatReading(lecture)
+    lecture: formatReading(lecture),
+    has_extra_pages: has_extra_pages
   }, {}, function (err, str) {
     console.log(err)
     fs.writeFileSync(dist + '/quotidienne/index.html', str)
   })
 });
 
-setTimeout(() => {
-  renderExtraPage(extras, 'JEUDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
-}, 1000)
-setTimeout(() => {
-  renderExtraPage(extras, 'VENDREDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
-}, 2000)
-setTimeout(() => {
-  renderExtraPage(extras, 'VEILLEEPASCALE', dist, views, ensureNoConsecutiveLecturesOfSameType, formatReading, getAllLecturesFromAllMesses)
-}, 3000)
+if (has_extra_pages) {
+  setTimeout(() => {
+    renderExtraPage(extras, 'JEUDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
+  }, 1000)
+  setTimeout(() => {
+    renderExtraPage(extras, 'VENDREDISAINT', dist, views, ensureUniqueLecturesReducer, formatReading, getAllLecturesFromAllMesses)
+  }, 2000)
+  setTimeout(() => {
+    renderExtraPage(extras, 'VEILLEEPASCALE', dist, views, ensureNoConsecutiveLecturesOfSameType, formatReading, getAllLecturesFromAllMesses)
+  }, 3000)
+}
 
 var console_green = "\x1b[32m"
 console.log(console_green, "Published to " + dist)

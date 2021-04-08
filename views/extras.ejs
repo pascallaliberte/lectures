@@ -106,11 +106,13 @@
       <nav class="site-nav">
         Retourner aux 
         <a href="/">lectures du dimanche prochain habituelles</a>
-        <br />
-        Lectures de la Semaine Sainte:
-        <a href="/jeudi-saint/">Jeudi Saint</a>, 
-        <a href="/vendredi-saint/">Vendredi Saint</a>, 
-        <a href="/veillee-pascale/">Veillée Pascale</a>
+        <% if (has_extra_pages) { %>
+          <br />
+          Lectures de la Semaine Sainte:
+          <a href="/jeudi-saint/">Jeudi Saint</a>, 
+          <a href="/vendredi-saint/">Vendredi Saint</a>, 
+          <a href="/veillee-pascale/">Veillée Pascale</a>  
+        <% } %>
       </nav>
       
     </div>
