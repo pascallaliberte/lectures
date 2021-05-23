@@ -76,6 +76,13 @@ function ensureNoConsecutiveLecturesOfSameType(accumulated, currentLecture) {
   return accumulated
 }
 
+function removeMessesVeille(messes, currentMesse) {
+  if (currentMesse.nom !== "Messe de la veille au soir") {
+    messes.push(currentMesse);
+  }
+  return messes;
+}
+
 function getAllLecturesFromAllMesses(set, currentMesse) {
   if (!currentMesse.lectures || currentMesse.lectures.length == 0) { return set; }
   
@@ -140,7 +147,9 @@ fetch('https://api.aelf.org/v1/messes/' + api_date_sunday + '/canada')
   return r.json();
 })
 .then(function(json) {
-  var lectures = json.messes.reduce(getAllLecturesFromAllMesses, []);
+  var lectures = json.messes
+    .reduce(removeMessesVeille, [])
+    .reduce(getAllLecturesFromAllMesses, []);
   var evangile_index = lectures.findIndex(function(lecture) {
     return lecture.type === "evangile";
   })
