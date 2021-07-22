@@ -3,13 +3,14 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var sassMiddleware =  require('node-sass-middleware')
+var compileSass = require('express-compile-sass')
 
-app.use(sassMiddleware({
-    src: path.join(__dirname, '_sass'),
-    dest: path.join(__dirname, 'dist/css'),
-    outputStyle: 'compressed',
-    prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+app.use(compileSass({
+    root: path.join(__dirname, '_sass'),
+    sourceMap: true, // Includes Base64 encoded source maps in output css
+    sourceComments: true, // Includes source comments in output css
+    watchFiles: true, // Watches sass files and updates mtime on main files for each change
+    logToConsole: false // If true, will log to console.error on errors
 }));
 
 app.use(express.static('dist'))
