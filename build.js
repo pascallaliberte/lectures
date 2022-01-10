@@ -10,6 +10,7 @@ var dist = "dist/"
 var views = "views/"
 
 const renderExtraPage = require('./src/render_extra_pages.js')
+const isNumber = require('./src/is_number.js')
 
 // delete the destination dir
 rimraf.sync(dist)
@@ -108,6 +109,12 @@ var api_date_today = today.format("YYYY-MM-DD")
 if (process.env.DATE) {
   console.log(`>> Using date ${process.env.DATE}`);
   api_date_sunday = process.env.DATE;
+}
+
+if (process.env.OFFSET_WEEKS && isNumber(process.env.OFFSET_WEEKS)) {
+  sunday.add(process.env.OFFSET_WEEKS, 'weeks')
+  api_date_sunday = sunday.format("YYYY-MM-DD")
+  console.log(`>> Using date ${api_date_sunday}`);
 }
 
 function formatReading(lecture) {
