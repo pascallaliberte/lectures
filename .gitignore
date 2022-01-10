@@ -4,3 +4,4 @@ css/*.css
 node_modules
 .zip
 .env
+.ruby-version
