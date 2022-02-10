@@ -21,7 +21,7 @@
     "jquery.smooth-scroll": "^1.5.2",
     "moment-timezone": "^0.5.27",
     "node-fetch": "^2.2.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "rimraf": "^2.6.2"
   },
