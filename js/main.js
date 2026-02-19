@@ -1,5 +1,4 @@
 import jQuery from 'jquery'
-import 'jquery.smooth-scroll'
 
 (function($){
   
@@ -85,10 +84,9 @@ import 'jquery.smooth-scroll'
   var enable_sroll_trick = function() {
     $("body").eq(0).addClass('js');
 
-    $(".to-top").smoothScroll({
-      easing: 'easeOutQuart',
-      speed: 600,
-      preventDefault: true
+    $(".to-top").on('click', function(event) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     var topGutterHeight = parseInt($("body").eq(0).css("padding-top"))
