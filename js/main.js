@@ -86,7 +86,18 @@ import jQuery from 'jquery'
 
     $(".to-top").on('click', function(event) {
       event.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      var href = this.getAttribute('href');
+      if (href && href.includes('#')) {
+        var targetId = href.split('#')[1];
+        var target = targetId ? document.getElementById(targetId) : null;
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
 
     var topGutterHeight = parseInt($("body").eq(0).css("padding-top"))
