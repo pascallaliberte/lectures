@@ -2,6 +2,8 @@ dist
 .sass-cache
 css/*.css
 node_modules
-.zip
+*.zip
 .env
 .ruby-version
+yarn-error.log
+.claude/

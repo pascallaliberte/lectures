@@ -1,7 +1,13 @@
 "use strict";
 
-const request = require("request");
+exports.handler = async (event, context) => {
+  const url = process.env.URL;
+  if (!url) {
+    throw new Error("URL environment variable is not set");
+  }
 
-exports.handler = (event, context, callback) => {
-    request.post(process.env.URL, callback);
+  const response = await fetch(url, { method: "POST" });
+  if (!response.ok) {
+    throw new Error(`Request failed with status ${response.status}`);
+  }
 };

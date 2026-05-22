@@ -1,8 +1,6 @@
 const fs = require('fs-extra')
 const rimraf = require('rimraf')
 const ejs = require('ejs')
-const fetch = require('node-fetch')
-
 const moment = require('moment-timezone')
 var timezone = 'America/Toronto'
 

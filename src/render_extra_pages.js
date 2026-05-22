@@ -1,7 +1,5 @@
 const fs = require('fs-extra')
 const ejs = require('ejs')
-const fetch = require('node-fetch')
-
 const moment = require('moment-timezone')
 
 module.exports = function(extras, extra, dist, views, lecturesReducer, formatReading, getAllLecturesFromAllMesses) {
