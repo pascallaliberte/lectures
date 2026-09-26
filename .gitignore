@@ -7,3 +7,4 @@ node_modules
 .ruby-version
 yarn-error.log
 .claude/
+.bunny/
