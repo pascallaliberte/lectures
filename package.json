@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "dotenv node build.js && yarn build-css && yarn build-js",
+    "build": "sh -c 'if [ -f .env ]; then dotenv node build.js; else node build.js; fi' && yarn build-css && yarn build-js",
     "build-css": "sass _sass/main.scss dist/css/main.css",
     "build-js": "NODE_OPTIONS=--openssl-legacy-provider webpack",
     "watch": "yarn build && node watch.js"

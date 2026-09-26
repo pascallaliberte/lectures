@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+exec 9>/tmp/lectures-page-publish.lock
+flock 9
+
+yarn build
+
+deploy_id="$(date -u +%Y%m%d-%H%M%S)"
+bunny sites deploy ./dist --site lectures --deploy-id "$deploy_id" --force
+bunny sites deployments prune --site lectures --keep 14 --force

@@ -1,0 +1,7 @@
+{
+  "sites": {
+    "name": "lectures",
+    "dir": "./dist",
+    "build": "yarn build"
+  }
+}

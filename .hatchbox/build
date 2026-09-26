@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+corepack enable
+corepack prepare yarn@1.22.22 --activate
+yarn install --frozen-lockfile
+bash bin/publish
