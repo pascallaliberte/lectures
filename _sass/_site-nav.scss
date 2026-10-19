@@ -11,6 +11,7 @@ nav.site-nav {
   text-align: right;
   padding: 0;
   margin: 0;
+  text-wrap: balance;
 
   font-size: $small-font-size;
   @include media-query($on-mobile) {
@@ -20,5 +21,9 @@ nav.site-nav {
   a {
     color: $grey-color;
     text-decoration: underline;
+
+    &:hover {
+      color: $text-color;
+    }
   }
 }

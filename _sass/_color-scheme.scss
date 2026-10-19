@@ -68,6 +68,10 @@ html.dark {
 
     a {
       color: $dark-grey;
+
+      &:hover {
+        color: $dark-text;
+      }
     }
 
     &::after {
@@ -97,6 +101,10 @@ html.dark {
 
     a {
       color: $dark-grey;
+
+      &:hover {
+        color: $dark-text;
+      }
     }
   }
 
@@ -105,6 +113,10 @@ html.dark {
 
     a {
       color: $dark-grey;
+
+      &:hover {
+        color: $dark-text;
+      }
     }
   }
 
@@ -129,11 +141,11 @@ html.dark {
   }
 
   .js.liturgical-color-vert .about {
-    background-color: rgb(0, 36, 0);
+    background-color: rgb(12, 34, 6);
   }
 
   .js.liturgical-color-rouge .about {
-    background-color: rgb(68, 14, 14);
+    background-color: rgb(72, 20, 12);
   }
 
   .js.liturgical-color-noir .about {
@@ -141,7 +153,7 @@ html.dark {
   }
 
   .js.liturgical-color-violet .about {
-    background-color: rgb(40, 14, 40);
+    background-color: rgb(44, 12, 34);
   }
 
   .js.liturgical-color-rose {
