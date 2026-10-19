@@ -32,7 +32,7 @@
 /**
  * Dark mode — low-lit warm page, soft text, subdued liturgical colours
  */
-$dark-bg: #1c1b19;
+$dark-bg: #2a2825; // warm, a bit darker than #333
 $dark-text: #e4e0d8;
 $dark-grey: #9a958c;
 $dark-link: #8eb4e0;
@@ -120,32 +120,38 @@ html.dark {
   .js .about {
     background: #2a2926;
     color: $dark-text;
+
+    a,
+    a:visited,
+    a:hover {
+      color: inherit;
+    }
   }
 
   .js.liturgical-color-vert .about {
-    background-color: rgb(0, 52, 0);
+    background-color: rgb(0, 36, 0);
   }
 
   .js.liturgical-color-rouge .about {
-    background-color: rgb(95, 20, 20);
+    background-color: rgb(68, 14, 14);
   }
 
   .js.liturgical-color-noir .about {
-    background-color: #1a1917;
+    background-color: #0a0a0a;
   }
 
   .js.liturgical-color-violet .about {
-    background-color: rgb(58, 20, 58);
+    background-color: rgb(40, 14, 40);
   }
 
   .js.liturgical-color-rose {
     .about {
       background-color: rgb(140, 100, 108);
-      color: #1c1b19;
+      color: $dark-bg;
     }
 
     .post-meta .post-date .post-date-more-info {
-      color: transparentize(#1c1b19, 0.4);
+      color: transparentize($dark-bg, 0.4);
     }
   }
 
@@ -155,7 +161,7 @@ html.dark {
 
     .about {
       background-color: #c8c4bc;
-      color: #1c1b19;
+      color: $dark-bg;
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       height: 312px;
     }

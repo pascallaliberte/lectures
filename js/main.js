@@ -136,6 +136,24 @@ import jQuery from 'jquery'
     window.addEventListener('color-scheme:changed', syncLabel);
   };
 
+  // Dev-only: override liturgical colour via ?couleur=vert|rouge|noir|violet|rose|blanc
+  var apply_liturgical_color_from_query = function() {
+    var host = window.location.hostname;
+    if (host !== 'localhost' && host !== '127.0.0.1') { return; }
+
+    var valid = ['vert', 'rouge', 'noir', 'violet', 'rose', 'blanc'];
+    var couleur = new URLSearchParams(window.location.search).get('couleur');
+    if (!couleur || valid.indexOf(couleur) === -1) { return; }
+
+    var body = document.body;
+    Array.prototype.slice.call(body.classList).forEach(function(cls) {
+      if (cls.indexOf('liturgical-color-') === 0) {
+        body.classList.remove(cls);
+      }
+    });
+    body.classList.add('liturgical-color-' + couleur);
+  };
+
   $( document ).ready(function() {
 
     $(window).on("popstate", function(e) {
@@ -143,6 +161,7 @@ import jQuery from 'jquery'
       $( ".post-readings-additional").eq(0).remove();
     });
 
+    apply_liturgical_color_from_query();
     enable_additional_readings();
     enable_color_scheme_toggle();
     if ($('aside.about').length) {
