@@ -116,6 +116,26 @@ import jQuery from 'jquery'
     });
   }
   
+  var enable_color_scheme_toggle = function() {
+    var button = document.getElementById('color-scheme-toggle');
+    if (!button || !window.colorScheme) { return; }
+
+    var labelFor = function(scheme) {
+      return scheme === 'dark' ? 'Mode clair' : 'Mode sombre';
+    };
+
+    var syncLabel = function() {
+      button.textContent = labelFor(window.colorScheme.current);
+    };
+
+    syncLabel();
+    button.addEventListener('click', function() {
+      window.colorScheme.toggle();
+      syncLabel();
+    });
+    window.addEventListener('color-scheme:changed', syncLabel);
+  };
+
   $( document ).ready(function() {
 
     $(window).on("popstate", function(e) {
@@ -124,6 +144,7 @@ import jQuery from 'jquery'
     });
 
     enable_additional_readings();
+    enable_color_scheme_toggle();
     if ($('aside.about').length) {
       enable_sroll_trick();
     }

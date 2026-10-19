@@ -1,0 +1,8 @@
+<button type="button" class="color-scheme-toggle" id="color-scheme-toggle" aria-label="Changer le mode d’affichage">Mode sombre</button>
+<script>
+  (function () {
+    var button = document.getElementById('color-scheme-toggle');
+    if (!button || !window.colorScheme) { return; }
+    button.textContent = window.colorScheme.current === 'dark' ? 'Mode clair' : 'Mode sombre';
+  })();
+</script>
