@@ -120,15 +120,15 @@ import jQuery from 'jquery'
     var button = document.getElementById('color-scheme-toggle');
     if (!button || !window.colorScheme) { return; }
 
-    var labelFor = function(scheme) {
-      return scheme === 'dark' ? 'Mode clair' : 'Mode sombre';
-    };
-
     var syncLabel = function() {
-      button.textContent = labelFor(window.colorScheme.current);
+      var attr = window.colorScheme.current === 'dark'
+        ? 'data-label-when-dark'
+        : 'data-label-when-light';
+      button.textContent = button.getAttribute(attr);
     };
 
     syncLabel();
+    button.hidden = false;
     button.addEventListener('click', function() {
       window.colorScheme.toggle();
       syncLabel();
