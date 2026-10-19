@@ -2,9 +2,7 @@
  * Color scheme toggle — same text treatment as .site-nav links
  */
 .color-scheme-toggle {
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
+  flex-shrink: 0;
   margin: 0;
   padding: 0;
   border: 0;
