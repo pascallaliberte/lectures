@@ -1,0 +1,198 @@
+/**
+ * Color scheme toggle — same text treatment as .site-nav links
+ */
+.color-scheme-toggle {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: $small-font-size;
+  @include media-query($on-mobile) {
+    font-size: $mobile-small-font-size;
+  }
+  line-height: inherit;
+  color: $grey-color;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    color: $text-color;
+  }
+}
+
+@media print {
+  .color-scheme-toggle {
+    display: none;
+  }
+}
+
+/**
+ * Dark mode — low-lit warm page, soft text, subdued liturgical colours
+ */
+$dark-bg: #2a2825; // warm, a bit darker than #333
+$dark-text: #e4e0d8;
+$dark-grey: #9a958c;
+$dark-link: #8eb4e0;
+
+html.dark {
+  color-scheme: dark;
+
+  body {
+    color: $dark-text;
+    background-color: $dark-bg;
+  }
+
+  a {
+    color: $dark-link;
+
+    &:visited {
+      color: darken($dark-link, 10%);
+    }
+
+    &:hover {
+      color: $dark-text;
+    }
+  }
+
+  blockquote {
+    color: $dark-grey;
+    border-left-color: lighten($dark-bg, 12%);
+  }
+
+  .intro-lecture-quotidienne,
+  .intro-lecture-extra {
+    color: $dark-grey;
+
+    a {
+      color: $dark-grey;
+
+      &:hover {
+        color: $dark-text;
+      }
+    }
+
+    &::after {
+      border-bottom-color: mix($dark-bg, $dark-grey);
+    }
+  }
+
+  .post-meta,
+  .post-meta .post-date {
+    color: $dark-grey;
+  }
+
+  .post-content {
+    h3 {
+      color: $dark-grey;
+    }
+
+    .indicateur-interlocuteur {
+      .js.liturgical-color-rouge & {
+        color: rgb(180, 90, 90);
+      }
+    }
+  }
+
+  #post-readings-additional-toggle {
+    color: $dark-grey;
+
+    a {
+      color: $dark-grey;
+
+      &:hover {
+        color: $dark-text;
+      }
+    }
+  }
+
+  nav.site-nav {
+    color: $dark-grey;
+
+    a {
+      color: $dark-grey;
+
+      &:hover {
+        color: $dark-text;
+      }
+    }
+  }
+
+  .color-scheme-toggle {
+    color: $dark-grey;
+
+    &:hover {
+      color: $dark-text;
+    }
+  }
+
+  // Liturgical colour band — same hues, subdued
+  .js .about {
+    background: #2a2926;
+    color: $dark-text;
+
+    a,
+    a:visited,
+    a:hover {
+      color: inherit;
+    }
+  }
+
+  .js.liturgical-color-vert .about {
+    background-color: rgb(12, 34, 6);
+  }
+
+  .js.liturgical-color-rouge .about {
+    background-color: rgb(72, 20, 12);
+  }
+
+  .js.liturgical-color-noir .about {
+    background-color: #0a0a0a;
+  }
+
+  .js.liturgical-color-violet .about {
+    background-color: rgb(44, 12, 34);
+  }
+
+  .js.liturgical-color-rose {
+    .about {
+      background-color: rgb(140, 100, 108);
+      color: $dark-bg;
+    }
+
+    .post-meta .post-date .post-date-more-info {
+      color: transparentize($dark-bg, 0.4);
+    }
+  }
+
+  // White liturgical: warm light gray band, keep dark text (not full white)
+  .js.liturgical-color-blanc {
+    background-color: $dark-bg;
+
+    .about {
+      background-color: #c8c4bc;
+      color: $dark-bg;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      height: 312px;
+    }
+
+    .page-content {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 120px);
+    }
+
+    .post-meta .post-date .post-date-more-info {
+      color: #5a5750;
+    }
+  }
+
+  .is-top .to-top {
+    background-color: rgba(0, 0, 0, 0.55);
+  }
+
+  .is-top .to-top:hover,
+  .is-top .to-top:active {
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+}

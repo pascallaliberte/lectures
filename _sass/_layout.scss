@@ -47,6 +47,10 @@
   a {
     color: $grey-color;
     text-decoration: underline;
+
+    &:hover {
+      color: $text-color;
+    }
   }
   
   &::after {
@@ -166,6 +170,10 @@
   a {
     color: $grey-color;
     text-decoration: underline;
+
+    &:hover {
+      color: $text-color;
+    }
   }
 }
 
