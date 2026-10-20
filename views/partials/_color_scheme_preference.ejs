@@ -11,11 +11,11 @@
 
       this.mediaQuery.addEventListener('change', e => {
         if (this.preference === 'system') {
-          this.#shown = e.matches ? 'dark' : 'light';
+          this.shown = e.matches ? 'dark' : 'light';
         }
       });
       if (!this.el.classList.contains('light') && !this.el.classList.contains('dark')) {
-        this.#shown = this.preference === 'system' ? this.#auto() : this.preference;
+        this.shown = this.preference === 'system' ? this.auto() : this.preference;
       }
     }
 
@@ -25,25 +25,25 @@
     set preference(scheme) {
       if (!this.validSchemes.includes(scheme)) throw new Error('Invalid color scheme');
       const stored = scheme === 'system' ? null : scheme;
-      this.#shown = stored ?? this.#auto();
+      this.shown = stored === null ? this.auto() : stored;
       stored === null
         ? localStorage.removeItem(this.storageKey)
         : localStorage.setItem(this.storageKey, scheme);
       window.dispatchEvent(new CustomEvent(this.eventName, { detail: { colorScheme: scheme } }));
     }
     get current() {
-      return this.#shown;
+      return this.shown;
     }
 
-    get #shown() {
+    get shown() {
       return this.el.classList.contains('dark') ? 'dark' : 'light';
     }
-    set #shown(scheme) {
+    set shown(scheme) {
       this.el.classList.remove('dark', 'light');
       this.el.classList.add(scheme);
       this.el.style.colorScheme = scheme;
     }
-    #auto() {
+    auto() {
       return this.mediaQuery.matches ? 'dark' : 'light';
     }
 
